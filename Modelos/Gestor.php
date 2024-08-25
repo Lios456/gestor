@@ -91,7 +91,7 @@ class Gestor extends Conectar {
         $rutaArchivo = $this->obtenerRutaArchivo($idArchivo);
 
         // Definir la ruta de la carpeta de la papelera
-        $carpetaPapelera = "../../archivos/papelera/";
+        $carpetaPapelera = "../Controllers/gestor/archivos/papelera";
         $nuevaRuta = $carpetaPapelera . $nombreArchivoAnterior;
 
         // Crear la carpeta "papelera" si no existe
