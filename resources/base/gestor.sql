@@ -231,7 +231,7 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `fechaNacimiento`, `email`, `usu
 --
 DELIMITER $$
 CREATE TRIGGER `tg_comprobar_contrasenia_despues_actualizar` BEFORE UPDATE ON `usuarios` FOR EACH ROW BEGIN
-	IF (New.password = null OR New.password = '')THEN
+	IF (New.password IS null OR New.password = '')THEN
 		SET New.password = OLD.password;
 	END IF ;
 END
