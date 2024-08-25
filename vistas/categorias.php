@@ -81,7 +81,7 @@
         include "footer.php";
 ?>
     <!--Dependencia de categorías, todas las funciones js de categorías-->
-    <script src="../js/categorias.js"></script>
+    <script src="../resources/js/categorias.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('#tablaCategorias').load("categorias/tablaCategoria.php");
