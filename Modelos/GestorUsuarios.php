@@ -6,7 +6,7 @@ class GestorUsuarios extends Conectar
     public function agregarUsuario($datos)
     {
         $conexion = Conectar::conexion();
-        $sql = "INSERT INTO usuarios (nombre, fechaNacimiento, email, usuario, password, rol) VALUES (?, ?, ?, ?, ?, ?)";
+        $sql = "CALL sp_insertar_usuario(?, ?, ?, ?, ?, ?)";
         $query = $conexion->prepare($sql);
         $query->bind_param("ssssss", $datos['nombre'], $datos['fechaNacimiento'], $datos['correo'], $datos['usuario'], $datos['password'], $datos['rol']);
         $respuesta = $query->execute();
@@ -51,7 +51,7 @@ class GestorUsuarios extends Conectar
     public function eliminarUsuario($idUsuario)
     {
         $conexion = Conectar::conexion();
-        $sql = "DELETE FROM usuarios WHERE id_usuario = ?";
+        $sql = "UPDATE gestor.usuarios SET estado = 'No Activo' WHERE id_usuario = ?";
         $query = $conexion->prepare($sql);
         $query->bind_param('i', $idUsuario);
         $respuesta = $query->execute();

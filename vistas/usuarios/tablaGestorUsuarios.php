@@ -21,7 +21,7 @@ $conexion = $conexion->conexion();
         </thead>
         <tbody>
             <?php
-                $sql = "SELECT id_usuario, nombre, fechaNacimiento, email, usuario, rol  FROM usuarios";
+                $sql = "CALL sp_listar_usuarios()";
                 $result = mysqli_query($conexion, $sql);
                 while($mostrar = mysqli_fetch_array($result)){
                     $idUsuario = $mostrar['id_usuario'];

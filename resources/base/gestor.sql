@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-08-2024 a las 20:34:42
+-- Tiempo de generación: 26-08-2024 a las 00:19:29
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -20,6 +20,43 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `gestor`
 --
+
+DELIMITER $$
+--
+-- Procedimientos
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insertar_usuario` (IN `p_nombre` VARCHAR(255), IN `p_fechaNacimiento` DATE, IN `p_email` VARCHAR(255), IN `p_usuario` VARCHAR(255), IN `p_password` VARCHAR(255), IN `p_rol` VARCHAR(50))   BEGIN
+    DECLARE idusu INT;
+
+    -- Verificar si el usuario ya existe
+    SELECT id_usuario INTO idusu FROM gestor.usuarios 
+    WHERE nombre = p_nombre 
+    AND fechaNacimiento = p_fechaNacimiento 
+    AND email = p_email 
+    AND usuario = p_usuario 
+    AND password = p_password 
+    AND rol = p_rol;
+
+    -- Si el usuario existe, actualizar el estado
+    IF idusu IS NOT NULL THEN
+        UPDATE gestor.usuarios 
+        SET estado = 'Activo' 
+        WHERE id_usuario = idusu;
+    ELSE
+        -- Si no existe, insertar el nuevo usuario
+        INSERT INTO gestor.usuarios (
+            nombre, fechaNacimiento, email, usuario, password, rol, fecha_insert
+        ) VALUES (
+            p_nombre, p_fechaNacimiento, p_email, p_usuario, p_password, p_rol, NOW()
+        );
+    END IF;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_listar_usuarios` ()   BEGIN
+	SELECT id_usuario, nombre, fechaNacimiento, email, usuario, rol  FROM usuarios WHERE estado = 'Activo';
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -53,7 +90,10 @@ INSERT INTO `archivos` (`id_archivo`, `id_usuario`, `id_categoria`, `nombre`, `t
 (16, 52, 2, 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'pdf', '../../procesos/gestor/archivos/Juanito/Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', '2024-08-24 11:04:29'),
 (17, 52, 2, '09GIC Bohr.pdf', 'pdf', '../../Controllers/gestor/archivos/Juanito/09GIC Bohr.pdf', '2024-08-25 00:01:10'),
 (18, 83, 2, '02GIC Newton.pdf', 'pdf', '../../Controllers/gestor/archivos/nelsonsito/02GIC Newton.pdf', '2024-08-25 01:28:08'),
-(19, 1, 2, '41GIC Riemann.pdf', 'pdf', '../../Controllers/gestor/archivos/Administrador/41GIC Riemann.pdf', '2024-08-25 13:08:46');
+(19, 1, 2, '41GIC Riemann.pdf', 'pdf', '../../Controllers/gestor/archivos/Administrador/41GIC Riemann.pdf', '2024-08-25 13:08:46'),
+(20, 86, 2, 'El origen de los dioses - Christian Jacq.pdf', 'pdf', '../../Controllers/gestor/archivos/Lios/El origen de los dioses - Christian Jacq.pdf', '2024-08-25 14:39:23'),
+(21, 86, 1, 'listas para viajar en el bus (1).docx', 'docx', '../../Controllers/gestor/archivos/Lios/listas para viajar en el bus (1).docx', '2024-08-25 14:40:55'),
+(22, 86, 3, 'Ec_calculo.xlsx', 'xlsx', '../../Controllers/gestor/archivos/Lios/Ec_calculo.xlsx', '2024-08-25 16:07:36');
 
 -- --------------------------------------------------------
 
@@ -154,7 +194,10 @@ INSERT INTO `auditoria` (`id_auditoria`, `id_usuario`, `accion`, `id_archivo`, `
 (174, 2, 'Descargar', NULL, '2024-08-25 12:58:50', NULL, '1', 'Se Descargar el archivo: Vigilia de Pentecostés (cantos).pdf'),
 (176, 1, 'Descargar', NULL, '2024-08-25 13:01:13', NULL, '1', 'Se Descargar el archivo: Guía instalación Odoo 17  - Gratuito.pdf'),
 (177, 1, 'Visualizar', NULL, '2024-08-25 13:01:19', NULL, '1', 'Se Visualizar el archivo: Guía instalación Odoo 17  - Gratuito.pdf'),
-(186, 1, 'Agregar', 19, '2024-08-25 13:08:46', 'Se agregó un nuevo archivo con nombre: 41GIC Riemann.pdf', '41GIC Riemann.pdf', '41GIC Riemann.pdf');
+(186, 1, 'Agregar', 19, '2024-08-25 13:08:46', 'Se agregó un nuevo archivo con nombre: 41GIC Riemann.pdf', '41GIC Riemann.pdf', '41GIC Riemann.pdf'),
+(194, 86, 'Agregar', 20, '2024-08-25 14:39:23', 'Se agregó un nuevo archivo con nombre: El origen de los dioses - Christian Jacq.pdf', 'El origen de los dioses - Christian Jacq.pdf', 'El origen de los dioses - Christian Jacq.pdf'),
+(195, 86, 'Agregar', 21, '2024-08-25 14:40:55', 'Se agregó un nuevo archivo con nombre: listas para viajar en el bus (1).docx', 'listas para viajar en el bus (1).docx', 'listas para viajar en el bus (1).docx'),
+(210, 86, 'Agregar', 22, '2024-08-25 16:07:36', 'Se agregó un nuevo archivo con nombre: Ec_calculo.xlsx', 'Ec_calculo.xlsx', 'Ec_calculo.xlsx');
 
 -- --------------------------------------------------------
 
@@ -208,30 +251,27 @@ CREATE TABLE `usuarios` (
   `usuario` varchar(245) NOT NULL,
   `password` varchar(255) NOT NULL,
   `rol` enum('administrador','usuario') NOT NULL DEFAULT 'usuario',
-  `fecha_insert` datetime NOT NULL DEFAULT current_timestamp()
+  `fecha_insert` datetime NOT NULL DEFAULT current_timestamp(),
+  `estado` varchar(45) NOT NULL DEFAULT 'Activo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `nombre`, `fechaNacimiento`, `email`, `usuario`, `password`, `rol`, `fecha_insert`) VALUES
-(1, 'Administrador', '2023-12-09', 'admin@admin.com', 'Administrador', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'administrador', '2023-12-26 09:21:06'),
-(2, 'Freddy', '2024-01-27', 'freddybazante@gmail.com', 'FreddyBazante', '73fa6ac852284791bc8fde3b7fb33c36a21ff180', 'usuario', '2024-01-04 00:24:29'),
-(42, 'Diana', '2024-06-07', 'n@p.com', 'Diana', '25b5d2709e20d26b989c89deb5ef80af3a716d20', 'usuario', '2024-06-07 01:00:08'),
-(43, 'EL', '2024-06-08', 'n@p2.com', 'DianaY', 'c164f1e3751efc7256529f145469e2d8e9487d23', 'usuario', '2024-06-07 01:21:08'),
-(44, 'MIA', '2024-06-07', 'n@r7tp.com', 'asadsads', '123456789', 'usuario', '2024-06-07 01:24:23'),
-(45, 'dsfsd', '2024-06-08', 'n@8p2.com', 'DianaYT', '5f8422af8c8af9abe0a1d088283cead27a08755b', 'usuario', '2024-06-07 01:30:43'),
-(46, 'Daniel', '2024-06-07', 'daniel@d.com', 'Daniel', '0d3d2621c3bfdb73b2b0b3b71886085302db1c8c', 'usuario', '2024-06-07 01:40:15'),
-(52, 'Juan', '2024-08-07', 'juan@mail.com', 'Juanito', '60bc5f12113173298ddf295e7f7ee1107e083ff2', 'usuario', '2024-08-22 20:04:06'),
-(83, 'Nelson', '2024-08-01', 'nelson@gmail.com', 'nelsonsito', '60bc5f12113173298ddf295e7f7ee1107e083ff2', 'usuario', '2024-08-25 01:23:26');
+INSERT INTO `usuarios` (`id_usuario`, `nombre`, `fechaNacimiento`, `email`, `usuario`, `password`, `rol`, `fecha_insert`, `estado`) VALUES
+(1, 'Administrador', '2023-12-09', 'admin@admin.com', 'Administrador', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'administrador', '2023-12-26 09:21:06', 'Activo'),
+(2, 'Freddy', '2024-01-27', 'freddybazante@gmail.com', 'FreddyBazante', '60bc5f12113173298ddf295e7f7ee1107e083ff2', 'usuario', '2024-01-04 00:24:29', 'No Activo'),
+(52, 'Juan', '2024-08-07', 'juan@mail.com', 'Juanito', '60bc5f12113173298ddf295e7f7ee1107e083ff2', 'usuario', '2024-08-22 20:04:06', 'Activo'),
+(83, 'Nelson', '2024-08-01', 'nelson@gmail.com', 'nelsonsito', '60bc5f12113173298ddf295e7f7ee1107e083ff2', 'usuario', '2024-08-25 01:23:26', 'Activo'),
+(86, 'LiosJ', '2023-08-01', 'lios@mail.com', 'Lios', '72eb94bef4fa9bf3c6317b52607eba8d4fae2523', 'administrador', '2024-08-25 14:37:50', 'Activo');
 
 --
 -- Disparadores `usuarios`
 --
 DELIMITER $$
 CREATE TRIGGER `tg_comprobar_contrasenia_despues_actualizar` BEFORE UPDATE ON `usuarios` FOR EACH ROW BEGIN
-	IF (New.password IS null OR New.password = '')THEN
+	IF (New.password is null OR New.password = '')THEN
 		SET New.password = OLD.password;
 	END IF ;
 END
@@ -287,19 +327,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `archivos`
 --
 ALTER TABLE `archivos`
-  MODIFY `id_archivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_archivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `auditoria`
 --
 ALTER TABLE `auditoria`
-  MODIFY `id_auditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=190;
+  MODIFY `id_auditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=215;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `papelera`
@@ -311,7 +351,7 @@ ALTER TABLE `papelera`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- Restricciones para tablas volcadas
