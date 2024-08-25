@@ -155,10 +155,9 @@ class Gestor extends Conectar {
 
     private function agregarRegistroPapelera($idArchivo, $idUsuario, $idCategoria, $nombreArchivo, $tipoArchivo, $rutaArchivo) {
         $conexion = Conectar::conexion();
-
-        $sql = "INSERT INTO papelera (id_archivo, id_usuario, id_categoria, nombre, tipo, ruta, fecha_eliminacion) VALUES (?, ?, ?, ?, ?, ?, NOW())";
+        $sql = "INSERT INTO papelera (id_archivo, id_usuario, nombre, tipo, ruta, fecha_eliminacion) VALUES (?,?,?,?,?,?)";
         $query = $conexion->prepare($sql);
-        $query->bind_param("iiisss", $idArchivo, $idUsuario, $idCategoria, $nombreArchivo, $tipoArchivo, $rutaArchivo);
+        $query->bind_param("iiisss", $idArchivo, $idUsuario, $nombreArchivo, $tipoArchivo, $rutaArchivo, date("Y-m-d"));
         $query->execute();
         $query->close();
     }
