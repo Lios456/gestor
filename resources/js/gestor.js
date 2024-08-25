@@ -1,7 +1,7 @@
 function agregarArchivosGestor() {
     var formData = new FormData(document.getElementById('frmArchivos'));
     $.ajax({
-        url: "../procesos/gestor/guardarArchivos.php",
+        url: "../Controllers/gestor/guardarArchivos.php",
         type: "POST",
         dataType: "html",
         data: formData,
@@ -41,7 +41,7 @@ function eliminarArchivo(idArchivo) {
                 $.ajax({
                     type: "POST",
                     data: "idArchivo=" + idArchivo,
-                    url: "../procesos/gestor/eliminarArchivo.php",
+                    url: "../Controllers/gestor/eliminarArchivo.php",
                     success: function(respuesta) {
                         console.log(respuesta);
                         respuesta = respuesta.trim();

@@ -22,7 +22,7 @@ if ($_FILES['archivos']['size'] > 0) {
     $respuesta = mysqli_fetch_array($result)['nombre_usuario'];
     $nombre_usuario = $respuesta;
 
-    $carpeta = '../../procesos/gestor/archivos/' . $respuesta . "/";
+    $carpeta = '../../Controllers/gestor/archivos/' . $respuesta . "/";
     $rutaFinal = $carpeta . $nombreArchivo;
     $datosRegistroArchivo = array(
                                 "idUsuario"=> $idUsuario,
