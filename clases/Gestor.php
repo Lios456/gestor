@@ -201,10 +201,9 @@ class Gestor extends Conectar {
 
     public function tipoArchivo($nombre, $extension) {
         include "C:/xampp/htdocs/gestor/config.php";
-        $rutaRelativa = $_SESSION['ruta_archivos'] . "/" . $nombre;
-        echo "LA RUTA DE ARCHIVOS DE SESIÓN ES = " . $_SESSION['ruta_archivos'] . "/" . $nombre;
-        $rutaAbsoluta = realpath($rutaRelativa);
-        echo "LA RUTA ABSOLUTA ES = $rutaAbsoluta";
+        $rutaAbsoluta = $_SESSION['ruta_archivos'] . "/" . $nombre;
+        echo "\nLA RUTA ABSOLUTA ES = $rutaAbsoluta \n";
+
         // Depuración: Imprimir la ruta del archivo
         error_log("Ruta del archivo: " . $rutaAbsoluta);
 
@@ -220,7 +219,7 @@ class Gestor extends Conectar {
             case 'docx':
                 return $this->visualizarDOCX($rutaEncoded);
             case 'pdf':
-                return '<embed src="../archivos/' . htmlspecialchars($rutaEncoded) . '" type="application/pdf" width="100%" height="600px" />';
+                return '<embed src="' . $rutaAbsoluta . '" type="application/pdf" width="100%" height="600px" />';
             case 'xlsx':
                 return $this->visualizarXLSX($rutaEncoded);
             default:
