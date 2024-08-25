@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-08-2024 a las 19:30:05
+-- Tiempo de generación: 25-08-2024 a las 20:34:42
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -52,7 +52,8 @@ INSERT INTO `archivos` (`id_archivo`, `id_usuario`, `id_categoria`, `nombre`, `t
 (15, 1, 2, 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'pdf', 'C:/xampp/htdocs/gestor/procesos/gestor/archivos/Administrador/Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', '2024-08-24 10:42:18'),
 (16, 52, 2, 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'pdf', '../../procesos/gestor/archivos/Juanito/Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', '2024-08-24 11:04:29'),
 (17, 52, 2, '09GIC Bohr.pdf', 'pdf', '../../Controllers/gestor/archivos/Juanito/09GIC Bohr.pdf', '2024-08-25 00:01:10'),
-(18, 83, 2, '02GIC Newton.pdf', 'pdf', '../../Controllers/gestor/archivos/nelsonsito/02GIC Newton.pdf', '2024-08-25 01:28:08');
+(18, 83, 2, '02GIC Newton.pdf', 'pdf', '../../Controllers/gestor/archivos/nelsonsito/02GIC Newton.pdf', '2024-08-25 01:28:08'),
+(19, 1, 2, '41GIC Riemann.pdf', 'pdf', '../../Controllers/gestor/archivos/Administrador/41GIC Riemann.pdf', '2024-08-25 13:08:46');
 
 -- --------------------------------------------------------
 
@@ -147,7 +148,13 @@ INSERT INTO `auditoria` (`id_auditoria`, `id_usuario`, `accion`, `id_archivo`, `
 (124, 2, 'Visualizar', NULL, '2024-08-24 20:04:53', NULL, '1', 'Se Visualizar el archivo: Vigilia de Pentecostés (cantos).pdf'),
 (137, 2, 'Visualizar', NULL, '2024-08-24 20:21:14', NULL, '1', 'Se Visualizar el archivo: Vigilia de Pentecostés (cantos).pdf'),
 (162, 52, 'Agregar', 17, '2024-08-25 00:01:10', 'Se agregó un nuevo archivo con nombre: 09GIC Bohr.pdf', '09GIC Bohr.pdf', '09GIC Bohr.pdf'),
-(163, 83, 'Agregar', 18, '2024-08-25 01:28:08', 'Se agregó un nuevo archivo con nombre: 02GIC Newton.pdf', '02GIC Newton.pdf', '02GIC Newton.pdf');
+(163, 83, 'Agregar', 18, '2024-08-25 01:28:08', 'Se agregó un nuevo archivo con nombre: 02GIC Newton.pdf', '02GIC Newton.pdf', '02GIC Newton.pdf'),
+(170, 2, 'Descargar', NULL, '2024-08-25 12:57:45', NULL, '1', 'Se Descargar el archivo: Vigilia de Pentecostés (cantos).pdf'),
+(173, 1, 'Descargar', NULL, '2024-08-25 12:58:43', NULL, '1', 'Se Descargar el archivo: Guía instalación Odoo 17  - Gratuito.pdf'),
+(174, 2, 'Descargar', NULL, '2024-08-25 12:58:50', NULL, '1', 'Se Descargar el archivo: Vigilia de Pentecostés (cantos).pdf'),
+(176, 1, 'Descargar', NULL, '2024-08-25 13:01:13', NULL, '1', 'Se Descargar el archivo: Guía instalación Odoo 17  - Gratuito.pdf'),
+(177, 1, 'Visualizar', NULL, '2024-08-25 13:01:19', NULL, '1', 'Se Visualizar el archivo: Guía instalación Odoo 17  - Gratuito.pdf'),
+(186, 1, 'Agregar', 19, '2024-08-25 13:08:46', 'Se agregó un nuevo archivo con nombre: 41GIC Riemann.pdf', '41GIC Riemann.pdf', '41GIC Riemann.pdf');
 
 -- --------------------------------------------------------
 
@@ -213,11 +220,23 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `fechaNacimiento`, `email`, `usu
 (2, 'Freddy', '2024-01-27', 'freddybazante@gmail.com', 'FreddyBazante', '73fa6ac852284791bc8fde3b7fb33c36a21ff180', 'usuario', '2024-01-04 00:24:29'),
 (42, 'Diana', '2024-06-07', 'n@p.com', 'Diana', '25b5d2709e20d26b989c89deb5ef80af3a716d20', 'usuario', '2024-06-07 01:00:08'),
 (43, 'EL', '2024-06-08', 'n@p2.com', 'DianaY', 'c164f1e3751efc7256529f145469e2d8e9487d23', 'usuario', '2024-06-07 01:21:08'),
-(44, 'MIA', '2024-06-07', 'n@r7tp.com', 'asadsads', '', 'usuario', '2024-06-07 01:24:23'),
+(44, 'MIA', '2024-06-07', 'n@r7tp.com', 'asadsads', '123456789', 'usuario', '2024-06-07 01:24:23'),
 (45, 'dsfsd', '2024-06-08', 'n@8p2.com', 'DianaYT', '5f8422af8c8af9abe0a1d088283cead27a08755b', 'usuario', '2024-06-07 01:30:43'),
 (46, 'Daniel', '2024-06-07', 'daniel@d.com', 'Daniel', '0d3d2621c3bfdb73b2b0b3b71886085302db1c8c', 'usuario', '2024-06-07 01:40:15'),
 (52, 'Juan', '2024-08-07', 'juan@mail.com', 'Juanito', '60bc5f12113173298ddf295e7f7ee1107e083ff2', 'usuario', '2024-08-22 20:04:06'),
 (83, 'Nelson', '2024-08-01', 'nelson@gmail.com', 'nelsonsito', '60bc5f12113173298ddf295e7f7ee1107e083ff2', 'usuario', '2024-08-25 01:23:26');
+
+--
+-- Disparadores `usuarios`
+--
+DELIMITER $$
+CREATE TRIGGER `tg_comprobar_contrasenia_despues_actualizar` BEFORE UPDATE ON `usuarios` FOR EACH ROW BEGIN
+	IF (New.password = null OR New.password = '')THEN
+		SET New.password = OLD.password;
+	END IF ;
+END
+$$
+DELIMITER ;
 
 --
 -- Índices para tablas volcadas
@@ -268,13 +287,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `archivos`
 --
 ALTER TABLE `archivos`
-  MODIFY `id_archivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_archivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `auditoria`
 --
 ALTER TABLE `auditoria`
-  MODIFY `id_auditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=164;
+  MODIFY `id_auditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=190;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
