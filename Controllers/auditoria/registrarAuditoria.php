@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $idUsuario = $_POST['idUsuario'];
     $idArchivo = $_POST['idArchivo'];
 
-    require_once "../../clases/Gestor.php"; // Ajusta la ruta según tu estructura de carpetas
+    require_once "../../Modelos/Gestor.php"; // Ajusta la ruta según tu estructura de carpetas
 
     $gestor = new Gestor();
     $gestor->registrarAuditoria($accion, "Se $accion el archivo: $nombreArchivo", $idUsuario, $idArchivo);

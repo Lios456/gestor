@@ -46,7 +46,7 @@ $result = mysqli_query($conexion, $sql);
                     $extensionesValidas = array('docx', 'pdf', 'xlsx');
 
                     while ($mostrar = mysqli_fetch_array($result)) {
-                        $rutaDescarga = $GLOBALS['ruta_archivos'] . $_SESSION['nombre_usuario'] . "/" . $mostrar['nombreArchivo'];
+                        $rutaDescarga = "../Controllers/gestor/archivos/" . $_SESSION['nombre_usuario'] . "/" . $mostrar['nombreArchivo'];
                         $nombreArchivo = $mostrar['nombreArchivo'];
                         $idArchivo = $mostrar['idArchivo'];
                         ?>
