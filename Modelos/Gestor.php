@@ -390,7 +390,7 @@ class Gestor extends Conectar {
         $htmlContent = '<div id="docxViewer" style="padding: 20px; border: 1px solid #ddd; background-color: #f9f9f9; margin-top: 20px;"></div>';
         $htmlContent .= '<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>';
         $htmlContent .= '<script>';
-        $htmlContent .= 'fetch("../archivos/' . $rutaEncoded . '")';
+        $htmlContent .= 'fetch("/gestor/Controllers/gestor/archivos/' . $_SESSION['nombre_usuario'] . "/" . $rutaEncoded . '")';
         $htmlContent .= '.then(function(response) { return response.arrayBuffer(); })';
         $htmlContent .= '.then(function(buffer) { return mammoth.convertToHtml({ arrayBuffer: buffer }); })';
         $htmlContent .= '.then(function(result) {';
@@ -431,13 +431,13 @@ class Gestor extends Conectar {
     }
 
     private function visualizarXLSX($rutaEncoded) {
-        $sheetJSScriptPath = "../librerias/xlsx.full.min.js";
+        $sheetJSScriptPath = "../resources/librerias/xlsx.full.min.js";
 
         $htmlContent = '<div id="xlsxViewer" style="padding: 20px; border: 1px solid #ddd; background-color: #f9f9f9; margin-top: 20px;"></div>';
         $htmlContent .= '<script src="' . $sheetJSScriptPath . '"></script>';
         $htmlContent .= '<script>';
         $htmlContent .= 'var xhr = new XMLHttpRequest();';
-        $htmlContent .= 'xhr.open("GET", "../archivos/' . $rutaEncoded . '", true);';
+        $htmlContent .= 'xhr.open("GET", "/gestor/Controllers/gestor/archivos/' . $_SESSION['nombre_usuario'] . "/" . $rutaEncoded . '", true);';
         $htmlContent .= 'xhr.responseType = "arraybuffer";';
         $htmlContent .= 'xhr.onload = function() {';
         $htmlContent .= '  var arraybuffer = xhr.response;';
