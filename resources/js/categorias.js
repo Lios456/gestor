@@ -7,7 +7,7 @@ function agregarCategoria() {
         $.ajax({
             type: "POST",
             data: "categoria=" + categoria,
-            url: "../procesos/categorias/agregarCategoria.php",
+            url: "../Controllers/categorias/agregarCategoria.php",
             success: function(respuesta) {
                 respuesta = respuesta.trim();
 
@@ -42,7 +42,7 @@ function eliminarCategorias(idCategoria) {
                     $.ajax({
                         type: "POST",
                         data: { idCategoria: idCategoria }, // Usar un objeto para pasar los datos
-                        url: "../procesos/categorias/eliminarCategoria.php",
+                        url: "../Controllers/categorias/eliminarCategoria.php",
                         success: function(respuesta) {
                             respuesta = respuesta.trim();
                             if (respuesta == 1) {
@@ -64,7 +64,7 @@ function obtenerDatosCategoria(idCategoria) {
     $.ajax({
         type: "POST",
         data: "idCategoria=" + idCategoria,
-        url: "../procesos/categorias/obtenerCategoria.php",
+        url: "../Controllers/categorias/obtenerCategoria.php",
         success: function(respuesta) {
             respuesta = jQuery.parseJSON(respuesta);
 
@@ -82,7 +82,7 @@ function actualizaCategoria() {
         $.ajax({
             type: "POST",
             data: $('#frmActualizaCategoria').serialize(),
-            url: "../procesos/categorias/actualizaCategoria.php",
+            url: "../Controllers/categorias/actualizaCategoria.php",
             success: function(respuesta) {
                 respuesta = respuesta.trim();
                 if (respuesta == 1) {

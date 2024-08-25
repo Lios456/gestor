@@ -67,7 +67,7 @@ function obtenerArchivoPorId(idArchivo) {
     $.ajax({
         type: "POST",
         data: { idArchivo: idArchivo },
-        url: "\\Controllers\\gestor\\obtenerArchivo.php",
+        url: "../Controllers/gestor/obtenerArchivo.php",
         success: function(respuesta) {
             console.log("La Respuesta AJAX: ", respuesta, " ID del archivo = ", idArchivo);
             $('#archivoObtenido').html(respuesta);
@@ -90,7 +90,7 @@ function prepararModalModificar(idArchivo) {
 function modificarArchivosGestor() {
     var formDataModificar = new FormData(document.getElementById('frmArchivosModificar'));
     $.ajax({
-        url: "../procesos/gestor/modificarArchivos.php",
+        url: "../Controllers/gestor/modificarArchivos.php",
         type: "POST",
         dataType: "html",
         data: formDataModificar,

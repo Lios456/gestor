@@ -66,7 +66,7 @@ function agregarUsuario() {
             agregarPasswordUsuario: password,
             agregarRolUsuario: rol
         },
-        url: "../procesos/usuario/agregarUsuario.php",
+        url: "../Controllers/usuario/agregarUsuario.php",
         success: function(respuesta) {
             respuesta = respuesta.trim();
 
@@ -95,7 +95,7 @@ function existeUsuario(usuario) {
         async: false, // Hacer la solicitud de forma síncrona
         type: "POST",
         data: { agregarUsuarioUsuario: usuario },
-        url: "../procesos/usuario/verificarUsuario.php",
+        url: "../Controllers/usuario/verificarUsuario.php",
         success: function(respuesta) {
             existe = respuesta.trim() === '1';
         }
@@ -110,7 +110,7 @@ function existeCorreo(correo) {
         async: false, // Hacer la solicitud de forma síncrona
         type: "POST",
         data: { agregarCorreoUsuario: correo },
-        url: "../procesos/usuario/verificarCorreo.php",
+        url: "../Controllers/usuario/verificarCorreo.php",
         success: function(respuesta) {
             existe = respuesta.trim() === '1';
         }
@@ -149,7 +149,7 @@ function eliminarUsuario(idUsuario) {
                         data: {
                             idUsuario: idUsuario
                         },
-                        url: "../procesos/usuario/eliminarUsuario.php",
+                        url: "../Controllers/usuario/eliminarUsuario.php",
                         success: function(respuesta) {
                             respuesta = respuesta.trim();
                             if (respuesta == 1) {
@@ -172,7 +172,7 @@ function obtenerUsuario(idUsuario) {
     $.ajax({
         type: "POST",
         data: { idUsuario: idUsuario },
-        url: "../procesos/usuario/obtenerUsuario.php",
+        url: "../Controllers/usuario/obtenerUsuario.php",
         success: function(respuesta) {
             console.log(respuesta);
 
@@ -243,7 +243,7 @@ function actualizaUsuario() {
     $.ajax({
         type: "POST",
         data: $("#frmActualizaUsuario").serialize(),
-        url: "../procesos/usuario/actualizaUsuario.php",
+        url: "../Controllers/usuario/actualizaUsuario.php",
         success: function(respuesta) {
             console.log("Respuesta del servidor:", respuesta);
 

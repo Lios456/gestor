@@ -17,7 +17,7 @@ function eliminarAuditoria(idAuditoria) {
                     $.ajax({
                         type: "POST",
                         data: { idAuditoria: idAuditoria },
-                        url: "../procesos/auditoria/eliminarAuditoria.php",
+                        url: "../Controllers/auditoria/eliminarAuditoria.php",
                         success: function(respuesta) {
                             respuesta = respuesta.trim();
                             if (respuesta == 1) {

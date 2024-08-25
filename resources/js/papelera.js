@@ -10,7 +10,7 @@ function eliminarArchivoPapelera(idArchivo) {
             $.ajax({
                 type: "POST",
                 data: "idArchivo=" + idArchivo,
-                url: "../procesos/papelera/eliminarArchivoPapelera.php",
+                url: "../Controllers/papelera/eliminarArchivoPapelera.php",
                 success: function(respuesta) {
                     console.log(respuesta);
                     respuesta = respuesta.trim();
@@ -38,7 +38,7 @@ function restaurarArchivoPapelera(idArchivo) {
             $.ajax({
                 type: "POST",
                 data: "idArchivo=" + idArchivo,
-                url: "../procesos/papelera/restaurarArchivoPapelera.php",
+                url: "../Controllers/papelera/restaurarArchivoPapelera.php",
                 success: function(respuesta) {
                     console.log(respuesta);
                     respuesta = respuesta.trim();

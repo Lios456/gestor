@@ -1,7 +1,7 @@
 <?php
 require_once "Conexion.php";
 
-class Gestor extends Conectar {
+class Gestor extends Conectar {             
     public function agregaRegistroArchivo($datos) {
         $extensionesPermitidas = array('pdf', 'docx', 'xlsx');
 
@@ -200,14 +200,16 @@ class Gestor extends Conectar {
     }
 
     public function tipoArchivo($nombre, $extension) {
-        include '../config.php';
-        $rutaAbsoluta = "../procesos/gestor/archivos/" . $_SESSION['nombre_usuario']. "/" . $nombre;
+        include 'C:/xampp/htdocs/gestor/config.php';
+        $rutaAbsoluta = "/gestor/Controllers/gestor/archivos/" . $_SESSION['nombre_usuario']. "/" . $nombre;
         // Depuración: Imprimir la ruta del archivo
         error_log("Ruta del archivo: " . $rutaAbsoluta);
-        echo "ESCANEO DE DIRECTORIO = " . scandir("../procesos/gestor/archivos/" . $_SESSION['nombre_usuario']);
+       
+        /* ERROR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
         if (!file_exists($rutaAbsoluta)) {
             return "El archivo no existe en la ruta especificada " . $rutaAbsoluta;
         }
+        */
 
         // Codificar espacios y caracteres especiales en la ruta para URL
         $rutaEncoded = rawurlencode($nombre);
