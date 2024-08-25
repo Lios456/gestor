@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once "../../clases/Conexion.php";
+    require_once "../../Modelos/Conexion.php";
     $idUsuario = $_SESSION['idUsuario'];
     $conexion = new Conectar();
     $conexion = $conexion->conexion();
@@ -34,9 +34,11 @@
                         */
                         $extensionesValidas = array('docx','pdf','xlsx');
 
-                        while ($mostrar = mysqli_fetch_array($result)) {
-                            $nombreArchivo = $mostrar['nombreArchivo'];
-                            $idArchivo = $mostrar['idArchivo'];
+                        if($result){
+                            while ($mostrar = mysqli_fetch_array($result)) {
+                                $nombreArchivo = $mostrar['nombreArchivo'];
+                                $idArchivo = $mostrar['idArchivo'];
+                        }
                     ?>
                     <tr>
                         <td><?php echo $mostrar['categoria'];?></td>

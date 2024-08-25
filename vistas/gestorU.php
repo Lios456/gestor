@@ -1,8 +1,8 @@
 <?php 
     session_start();
-    include "funciones.php"; 
+    include "funciones.php";
     if(isset($_SESSION['usuario'])){
-    include "headerUsuario.php"; 
+    include "headerUsuario.php";
     // Verificar el rol del usuario
     $rolUsuario = obtenerRolUsuario();
 

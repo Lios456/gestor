@@ -87,7 +87,7 @@
             $.ajax({
                 method: "POST",
                 data: $('#frmLogin').serialize(),
-                url: "procesos/usuario/login/login.php",
+                url: "Controllers/usuario/login/login.php",
                 success: function (respuesta) {
                     respuesta = respuesta.trim();
 
@@ -95,7 +95,7 @@
                         // Inicio de sesión exitoso
                         swal(":D", "Inicio de sesión exitoso", "success").then(function () {
                             // Redirigir según el rol del usuario
-                            window.location = "procesos/usuario/login/redireccion.php";
+                            window.location = "Controllers/usuario/login/redireccion.php";
                         });
                     } else {
                         // Mostrar mensaje de error

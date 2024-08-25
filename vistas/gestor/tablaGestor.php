@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "../../clases/Conexion.php";
+require_once "../../Modelos/Conexion.php";
 require_once "../funciones.php"; // Asegúrate de que esta línea esté incluida para obtener el rol del usuario
 require_once "../../config.php";
 
@@ -145,7 +145,7 @@ $result = mysqli_query($conexion, $sql);
     }
 
     function registrarAuditoria(accion, nombreArchivo, nombreArchivoAnterior, idUsuario, idArchivo) {
-        var url = "../procesos/auditoria/registrarAuditoria.php";
+        var url = '..\\Controllers\\auditoria\\registrarAuditoria.php';
         $.ajax({
             type: "POST",
             url: url,

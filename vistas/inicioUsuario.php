@@ -1,7 +1,7 @@
 <?php 
 session_start();
 include "funciones.php"; // Incluye las funciones necesarias
-include "C:/xampp/htdocs/gestor/config.php";
+include "../config.php";
 
 if (verificarSesion()) { // Función que verifica la sesión
     $rolUsuario = obtenerRolUsuario();

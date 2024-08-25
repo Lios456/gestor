@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once "../../clases/Conexion.php";
+    require_once "../../Modelos/Conexion.php";
     $c = new Conectar();
     $conexion = $c->conexion();
     $idUsuario = $_SESSION['idUsuario'];
