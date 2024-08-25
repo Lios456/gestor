@@ -35,10 +35,7 @@ $result = mysqli_query($conexion, $sql);
                         <th>Extensión de archivo</th>
                         <th>Descargar</th>
                         <th>Visualizar</th>
-                        <?php if ($rolUsuario == 'administrador'): ?>
-                            <th>Modificar</th>
-                            <th>Eliminar</th>
-                        <?php endif; ?>
+                        <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -88,23 +85,11 @@ $result = mysqli_query($conexion, $sql);
                                 ?>
                                 
                             </td>
-                            <!--
-                                Modificar archivos solo admin
-                            -->
-                            <?php if ($rolUsuario == 'administrador'): ?>
-                                <td>
-                                    <span class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#modalModificarArchivos"
-                                        onclick="prepararModalModificar('<?php echo $idArchivo; ?>')">
-                                        <span class="fas fa-edit"></span>
-                                    </span>
-                                </td>
-                                <td>
+                            <td>
                                     <span class="btn btn-danger btn-sm" onclick="eliminarArchivo(<?php echo $idArchivo; ?>)">
                                         <span class="fas fa-trash-alt"></span>
                                     </span>
                                 </td>
-                            <?php endif; ?>
                         </tr>
                         <?php
                     }
