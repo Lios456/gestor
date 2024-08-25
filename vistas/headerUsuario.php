@@ -32,7 +32,7 @@
                     <a class="nav-link" href="gestor.php"><span class="fa-solid fa-folder"></span>Gestión de Archivos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../procesos/usuario/salir.php" style="color: red"><span class="fa-solid fa-power-off"></span>Salir</a>
+                    <a class="nav-link" href="../Controllers/usuario/salir.php" style="color: red"><span class="fa-solid fa-power-off"></span>Salir</a>
                 </li>
             </ul>
             </div>

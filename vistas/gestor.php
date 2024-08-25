@@ -91,7 +91,7 @@
     </div>
 
 <?php include "footer.php"; ?>
-<script src="../js/gestor.js"></script>
+<script src="../resources/js/gestor.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#tablaGestorArchivos').load("gestor/tablaGestor.php");
