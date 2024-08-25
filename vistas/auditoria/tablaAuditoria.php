@@ -22,8 +22,9 @@
                 <?php
                     $sql = "SELECT a.id_auditoria, u.nombre AS nombre_usuario, a.accion, a.nombre_archivo_anterior, a.fecha 
                     FROM auditoria a 
-                    LEFT JOIN usuarios u ON a.id_usuario = u.id_usuario";
-            
+                    LEFT JOIN usuarios u ON a.id_usuario = u.id_usuario
+                    ORDER BY a.fecha DESC";
+
                     $result = mysqli_query($conexion, $sql);
                     while($mostrar = mysqli_fetch_array($result)){
                         $idAuditoria = $mostrar['id_auditoria'];

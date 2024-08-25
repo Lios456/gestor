@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-06-2024 a las 05:36:38
+-- Tiempo de generación: 25-08-2024 a las 19:30:05
 -- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Versión de PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -48,7 +48,11 @@ INSERT INTO `archivos` (`id_archivo`, `id_usuario`, `id_categoria`, `nombre`, `t
 (4, 1, 3, 'Libro1.xlsx', 'xlsx', '../../archivos/Libro1.xlsx', '2024-06-06 23:07:00'),
 (5, 1, 1, 'ahorros.xlsx', 'xlsx', '../../archivos/ahorros.xlsx', '2024-06-06 23:07:37'),
 (6, 1, 1, 'Plan de titulación - Freddy Bazante - versión 2.docx', 'docx', '../../archivos/Plan de titulación - Freddy Bazante - versión 2.docx', '2024-06-06 23:08:19'),
-(7, 1, 1, 'Proyecto Integrador - Freddy Bazante - version4.docx', 'docx', '../../archivos/Proyecto Integrador - Freddy Bazante - version4.docx', '2024-06-06 23:08:51');
+(7, 1, 1, 'Proyecto Integrador - Freddy Bazante - version4.docx', 'docx', '../../archivos/Proyecto Integrador - Freddy Bazante - version4.docx', '2024-06-06 23:08:51'),
+(15, 1, 2, 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'pdf', 'C:/xampp/htdocs/gestor/procesos/gestor/archivos/Administrador/Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', '2024-08-24 10:42:18'),
+(16, 52, 2, 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'pdf', '../../procesos/gestor/archivos/Juanito/Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', '2024-08-24 11:04:29'),
+(17, 52, 2, '09GIC Bohr.pdf', 'pdf', '../../Controllers/gestor/archivos/Juanito/09GIC Bohr.pdf', '2024-08-25 00:01:10'),
+(18, 83, 2, '02GIC Newton.pdf', 'pdf', '../../Controllers/gestor/archivos/nelsonsito/02GIC Newton.pdf', '2024-08-25 01:28:08');
 
 -- --------------------------------------------------------
 
@@ -126,7 +130,24 @@ INSERT INTO `auditoria` (`id_auditoria`, `id_usuario`, `accion`, `id_archivo`, `
 (52, 1, 'Visualizar', NULL, '2024-06-06 23:35:56', NULL, 'Herramientas usadas.docx', 'Se Visualizar el archivo: Herramientas usadas.docx'),
 (53, 1, 'Visualizar', NULL, '2024-06-06 23:36:12', NULL, 'Proyecto Integrador - Freddy Bazante - version4.docx', 'Se Visualizar el archivo: Proyecto Integrador - Freddy Bazante - version4.docx'),
 (54, 1, 'Visualizar', NULL, '2024-06-07 01:42:11', NULL, 'Herramientas usadas.docx', 'Se Visualizar el archivo: Herramientas usadas.docx'),
-(55, 2, 'Visualizar', NULL, '2024-06-10 21:51:58', NULL, 'Herramientas usadas.docx', 'Se Visualizar el archivo: Herramientas usadas.docx');
+(55, 2, 'Visualizar', NULL, '2024-06-10 21:51:58', NULL, 'Herramientas usadas.docx', 'Se Visualizar el archivo: Herramientas usadas.docx'),
+(64, 1, 'Visualizar', NULL, '2024-08-22 19:40:02', NULL, '1', 'Se Visualizar el archivo: Guía instalación Odoo 17  - Gratuito.pdf'),
+(65, 1, 'Agregar', 8, '2024-08-24 09:26:32', 'Se agregó un nuevo archivo con nombre: admin,+Gestor_a+de+la+revista,+relais-v1-n4-p-125-134.pdf', 'admin,+Gestor_a+de+la+revista,+relais-v1-n4-p-125-134.pdf', 'admin,+Gestor_a+de+la+revista,+relais-v1-n4-p-125-134.pdf'),
+(66, 1, 'Agregar', 9, '2024-08-24 09:32:42', 'Se agregó un nuevo archivo con nombre: admin,+Gestor_a+de+la+revista,+relais-v1-n4-p-125-134.pdf', 'admin,+Gestor_a+de+la+revista,+relais-v1-n4-p-125-134.pdf', 'admin,+Gestor_a+de+la+revista,+relais-v1-n4-p-125-134.pdf'),
+(68, 1, 'Agregar', 10, '2024-08-24 09:34:23', 'Se agregó un nuevo archivo con nombre: admin,+Gestor_a+de+la+revista,+relais-v1-n4-p-125-134.pdf', 'admin,+Gestor_a+de+la+revista,+relais-v1-n4-p-125-134.pdf', 'admin,+Gestor_a+de+la+revista,+relais-v1-n4-p-125-134.pdf'),
+(69, 1, 'Agregar', 11, '2024-08-24 10:21:45', 'Se agregó un nuevo archivo con nombre: Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf'),
+(70, 1, 'Agregar', 12, '2024-08-24 10:23:25', 'Se agregó un nuevo archivo con nombre: Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf'),
+(71, 1, 'Agregar', 13, '2024-08-24 10:25:46', 'Se agregó un nuevo archivo con nombre: Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf'),
+(72, 1, 'Agregar', 14, '2024-08-24 10:29:14', 'Se agregó un nuevo archivo con nombre: Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf'),
+(73, 1, 'Agregar', 15, '2024-08-24 10:42:18', 'Se agregó un nuevo archivo con nombre: Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf'),
+(74, 52, 'Agregar', 16, '2024-08-24 11:04:29', 'Se agregó un nuevo archivo con nombre: Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf'),
+(79, 2, 'Visualizar', NULL, '2024-08-24 11:09:48', NULL, '1', 'Se Visualizar el archivo: Vigilia de Pentecostés (cantos).pdf'),
+(111, 2, 'Visualizar', NULL, '2024-08-24 19:03:35', NULL, '1', 'Se Visualizar el archivo: Vigilia de Pentecostés (cantos).pdf'),
+(112, 1, 'Visualizar', NULL, '2024-08-24 19:03:39', NULL, '1', 'Se Visualizar el archivo: Guía instalación Odoo 17  - Gratuito.pdf'),
+(124, 2, 'Visualizar', NULL, '2024-08-24 20:04:53', NULL, '1', 'Se Visualizar el archivo: Vigilia de Pentecostés (cantos).pdf'),
+(137, 2, 'Visualizar', NULL, '2024-08-24 20:21:14', NULL, '1', 'Se Visualizar el archivo: Vigilia de Pentecostés (cantos).pdf'),
+(162, 52, 'Agregar', 17, '2024-08-25 00:01:10', 'Se agregó un nuevo archivo con nombre: 09GIC Bohr.pdf', '09GIC Bohr.pdf', '09GIC Bohr.pdf'),
+(163, 83, 'Agregar', 18, '2024-08-25 01:28:08', 'Se agregó un nuevo archivo con nombre: 02GIC Newton.pdf', '02GIC Newton.pdf', '02GIC Newton.pdf');
 
 -- --------------------------------------------------------
 
@@ -160,7 +181,6 @@ CREATE TABLE `papelera` (
   `id_papelera` int(11) NOT NULL,
   `id_archivo` int(11) DEFAULT NULL,
   `id_usuario` int(11) DEFAULT NULL,
-  `id_categoria` int(11) DEFAULT NULL,
   `nombre` varchar(255) DEFAULT NULL,
   `tipo` varchar(50) DEFAULT NULL,
   `ruta` varchar(255) DEFAULT NULL,
@@ -193,9 +213,11 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `fechaNacimiento`, `email`, `usu
 (2, 'Freddy', '2024-01-27', 'freddybazante@gmail.com', 'FreddyBazante', '73fa6ac852284791bc8fde3b7fb33c36a21ff180', 'usuario', '2024-01-04 00:24:29'),
 (42, 'Diana', '2024-06-07', 'n@p.com', 'Diana', '25b5d2709e20d26b989c89deb5ef80af3a716d20', 'usuario', '2024-06-07 01:00:08'),
 (43, 'EL', '2024-06-08', 'n@p2.com', 'DianaY', 'c164f1e3751efc7256529f145469e2d8e9487d23', 'usuario', '2024-06-07 01:21:08'),
-(44, 'MMM', '2024-06-07', 'n@r7tp.com', 'asadsads', '', 'usuario', '2024-06-07 01:24:23'),
+(44, 'MIA', '2024-06-07', 'n@r7tp.com', 'asadsads', '', 'usuario', '2024-06-07 01:24:23'),
 (45, 'dsfsd', '2024-06-08', 'n@8p2.com', 'DianaYT', '5f8422af8c8af9abe0a1d088283cead27a08755b', 'usuario', '2024-06-07 01:30:43'),
-(46, 'Daniel', '2024-06-07', 'daniel@d.com', 'Daniel', '0d3d2621c3bfdb73b2b0b3b71886085302db1c8c', 'usuario', '2024-06-07 01:40:15');
+(46, 'Daniel', '2024-06-07', 'daniel@d.com', 'Daniel', '0d3d2621c3bfdb73b2b0b3b71886085302db1c8c', 'usuario', '2024-06-07 01:40:15'),
+(52, 'Juan', '2024-08-07', 'juan@mail.com', 'Juanito', '60bc5f12113173298ddf295e7f7ee1107e083ff2', 'usuario', '2024-08-22 20:04:06'),
+(83, 'Nelson', '2024-08-01', 'nelson@gmail.com', 'nelsonsito', '60bc5f12113173298ddf295e7f7ee1107e083ff2', 'usuario', '2024-08-25 01:23:26');
 
 --
 -- Índices para tablas volcadas
@@ -230,8 +252,7 @@ ALTER TABLE `categorias`
 ALTER TABLE `papelera`
   ADD PRIMARY KEY (`id_papelera`),
   ADD KEY `id_archivo` (`id_archivo`),
-  ADD KEY `id_usuario` (`id_usuario`),
-  ADD KEY `id_categoria` (`id_categoria`);
+  ADD KEY `id_usuario` (`id_usuario`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -247,13 +268,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `archivos`
 --
 ALTER TABLE `archivos`
-  MODIFY `id_archivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_archivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `auditoria`
 --
 ALTER TABLE `auditoria`
-  MODIFY `id_auditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id_auditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=164;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -271,7 +292,7 @@ ALTER TABLE `papelera`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- Restricciones para tablas volcadas
@@ -291,17 +312,10 @@ ALTER TABLE `auditoria`
   ADD CONSTRAINT `fkUsuariosAuditoria` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `categorias`
---
-ALTER TABLE `categorias`
-  ADD CONSTRAINT `fkCategoriaUsuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
 -- Filtros para la tabla `papelera`
 --
 ALTER TABLE `papelera`
-  ADD CONSTRAINT `papelera_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
-  ADD CONSTRAINT `papelera_ibfk_3` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`);
+  ADD CONSTRAINT `papelera_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

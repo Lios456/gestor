@@ -17,7 +17,7 @@
     </div>
 
 <?php include "footer.php"; ?>
-    <script src="../js/auditoria.js"></script>
+    <script src="../resources/js/auditoria.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('#tablaAuditoria').load("auditoria/tablaAuditoria.php");

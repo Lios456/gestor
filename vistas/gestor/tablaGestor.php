@@ -119,7 +119,7 @@ $result = mysqli_query($conexion, $sql);
         var nombreArchivoAnterior;
         $.ajax({
             type: "POST",
-            url: "../procesos/auditoria/obtenerNombreArchivo.php",
+            url: "../Controllers/auditoria/obtenerNombreArchivo.php",
             data: { idArchivo: idArchivo },
             async: false,
             success: function (response) {
