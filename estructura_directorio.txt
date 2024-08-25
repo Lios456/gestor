@@ -1,0 +1,65 @@
+gestor
+|   estructura_directorio.txt
+|   index.php
+|   registro.php
+|   
++---archivos
+|       gestion_archivos (1) (1).sql
+|       gestor.sql
+|       
++---base
+|       gestor.sql
+|       
++---clases
+|       Categorias.php
+|       Conexion.php
+|       Gestor.php
+|       Usuario.php
+|       
++---css
+|       login.css
+|       
++---img
+|       logo.jpg
+|       
++---js
+|       categorias.js
+|       gestor.js
+|       
+|       
++---librerias
+|       
+|
++---procesos
+|   +---categorias
+|   |       actualizaCategoria.php
+|   |       agregarCategoria.php
+|   |       eliminarCategoria.php
+|   |       obtenerCategoria.php
+|   |       
+|   +---gestor
+|   |       guardarArchivos.php
+|   |       
+|   \---usuario
+|       |   salir.php
+|       |   
+|       +---login
+|       |       login.php
+|       |       
+|       \---registro
+|               agregarUsuario.php
+|               
+\---vistas
+    |   categorias.php
+    |   footer.php
+    |   gestor.php
+    |   header.php
+    |   inicio.php
+    |   
+    +---categorias
+    |       selectCategorias.php
+    |       tablaCategoria.php
+    |       
+    \---gestor
+            tablaGestor.php
+            

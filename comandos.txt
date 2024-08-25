@@ -1,0 +1,57 @@
+sudo apt update
+sudo apt upgrade
+sudo apt install gcc make perl
+sudo apt update
+sudo apt install apache2 php libapache2-mod-php
+sudo a2enmod php8.2
+sudo apt install php-mysql
+sudo apt-cache search mysql-server
+sudo service apache2 restart
+sudo service apache2 status
+cls
+clear
+echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/info.php
+sudo apt install mysql-serve
+sudo apt install mysql-server
+sudo systemctl status mysql.service
+sudo systemctl enable mysql.service
+sudo mysql
+sudo nano /etc/apache2/sites-available/gestion-archivos.conf
+sudo mkdir /var/www/html/gestion-archivos
+sudo chown -R www-data:www-data /var/www/html/gestion-archivos
+sudo nano /etc/apache2/sites-available/gestion-archivos.conf
+sudo a2ensite gestion-archivos.conf
+sudo systemctl restart apache2
+sudo nano /var/www/html/gestion-archivos/info.php
+sudo mysql -u root -p
+sudo apt install php libapache2-mod-php php-mysql
+history
+ifconfig
+sudo apt install net-tools
+ifconfig
+exit
+sudo apt install mysql-server
+sudo systemctl status mysql.service
+sudo systemctl enable mysql.service
+sudo mysql
+mysql
+sudo mysql -u root -p
+clear
+sudo mysql_secure_installation
+sudo mysql -u root -p
+clear
+pwd
+ls
+mysql -u gad - p gestor < gestor.sql
+mysql -u gad -p gestor < gestor.sql
+mysql
+sudo mysql
+sudo mysql -u gad -p
+ls
+cp -r gestor /var/www/html/
+ls /var/www/html/
+sudo cp -r gestor /var/www/html/
+ls /var/www/html/
+ls /var/www/html/gestor/
+ifconfig
+history
