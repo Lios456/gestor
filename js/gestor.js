@@ -64,13 +64,13 @@ function eliminarArchivo(idArchivo) {
 }
 
 function obtenerArchivoPorId(idArchivo) {
+    console.log("El id del archivo = ", idArchivo)
     $.ajax({
         type: "POST",
         data: { idArchivo: idArchivo },
         url: "../procesos/gestor/obtenerArchivo.php",
         success: function(respuesta) {
-            console.log("ID del Archivo: ");
-            console.log("La Respuesta AJAX: ", respuesta);
+            console.log("La Respuesta AJAX: ", respuesta, " ID del archivo = ", idArchivo);
             $('#archivoObtenido').html(respuesta);
             $('#visualizarArchivo').modal('show');  // Mostrar el modal después de cargar el archivo
         },
@@ -78,6 +78,7 @@ function obtenerArchivoPorId(idArchivo) {
             console.error("Error en AJAX: ", error);
         }
     });
+
 }
 
 

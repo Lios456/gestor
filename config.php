@@ -7,7 +7,7 @@ if(PHP_OS == "WINNT"){
 }else{
     if(PHP_OS == "Linux"){
         $GLOBALS['ruta_raiz'] = "/var/www/html/gestor/procesos/gestor/archivos/";
-        $GLOBALS['ruta_archivos'] = $GLOBALS['ruta_raiz'];
+        $GLOBALS['ruta_archivos'] = "/var/www/html/gestor/procesos/gestor/archivos/";
     }
 }
 
