@@ -26,7 +26,7 @@ class GestorUsuarios extends Conectar
         } else {
             //echo "El directorio '$nombre' ya existe.";
         }
-
+        //echo "La respuesta de GestorUsuarios.php es = " . $respuesta;
         return $respuesta;
     }
 

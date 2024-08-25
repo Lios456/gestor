@@ -70,7 +70,7 @@ function agregarUsuario() {
         success: function(respuesta) {
             respuesta = respuesta.trim();
             console.log("La respuesta es: ", respuesta);
-            if (respuesta === 1 || respuesta === "true") {
+            if (respuesta == 1 ) {
                 $('#tablaUsuarios').load("../vistas/usuarios/tablaGestorUsuarios.php");
                 $('#agregarNombreUsuario').val("");
                 $('#agregarFechaNacimiento').val("");

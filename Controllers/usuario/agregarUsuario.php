@@ -44,9 +44,8 @@ $datos = array(
 );
 
 $resultado = $GestorUsuarios->agregarUsuario($datos);
-
-if ($resultado === true) {
-    echo "1"; // Éxito
+if ($resultado == 1) {
+    echo '1'; // Éxito
 } else {
     echo "0"; // Falló
 }
