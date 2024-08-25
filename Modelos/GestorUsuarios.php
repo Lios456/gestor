@@ -19,12 +19,12 @@ class GestorUsuarios extends Conectar
         // Verifica si el directorio ya existe
         if (!is_dir($ruta)) {
             if (mkdir($ruta, 0777, true)) {
-                echo "El directorio '$nombre' se creó correctamente.";
+                //echo "El directorio '$nombre' se creó correctamente.";
             } else {
-                echo "Hubo un error al crear el directorio '$nombre'.";
+                //echo "Hubo un error al crear el directorio '$nombre'.";
             }
         } else {
-            echo "El directorio '$nombre' ya existe.";
+            //echo "El directorio '$nombre' ya existe.";
         }
 
         return $respuesta;

@@ -69,8 +69,8 @@ function agregarUsuario() {
         url: "../Controllers/usuario/agregarUsuario.php",
         success: function(respuesta) {
             respuesta = respuesta.trim();
-
-            if (respuesta == 1) {
+            console.log("La respuesta es: ", respuesta);
+            if (respuesta === 1 || respuesta === "true") {
                 $('#tablaUsuarios').load("../vistas/usuarios/tablaGestorUsuarios.php");
                 $('#agregarNombreUsuario').val("");
                 $('#agregarFechaNacimiento').val("");

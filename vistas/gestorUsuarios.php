@@ -31,7 +31,7 @@ if (isset($_SESSION['usuario'])){
     </div>
 </div>
 
-<!-- Modal -->
+<!-- ///////////////////////////////////////////////////////////////// Modal AGREGAR USUARIOS /////////////////////////////////////////////////////////////////////////////-->
 <div class="modal fade" id="modalAgregarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
@@ -71,7 +71,7 @@ if (isset($_SESSION['usuario'])){
     </div>
 </div>
 
-<!-- Modal -->
+<!-- ///////////////////////////////////////////////////////////////// Modal ACTUALIZAR USUARIOS /////////////////////////////////////////////////////////////////////////////-->
 <div class="modal fade" id="modalActualizarUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
