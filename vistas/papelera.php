@@ -17,7 +17,7 @@
 </div>
 
 <?php include "footer.php"; ?>
-<script src="../js/papelera.js"></script>
+<script src="../resources/js/papelera.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#tablaPapelera').load("papelera/tablaPapelera.php");

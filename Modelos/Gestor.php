@@ -155,9 +155,9 @@ class Gestor extends Conectar {
 
     private function agregarRegistroPapelera($idArchivo, $idUsuario, $idCategoria, $nombreArchivo, $tipoArchivo, $rutaArchivo) {
         $conexion = Conectar::conexion();
-        $sql = "INSERT INTO papelera (id_archivo, id_usuario, nombre, tipo, ruta, fecha_eliminacion) VALUES (?,?,?,?,?,?)";
+        $sql = "INSERT INTO papelera (id_archivo, id_usuario, nombre, tipo, ruta, fecha_eliminacion) VALUES (?,?,?,?,?,NOW())";
         $query = $conexion->prepare($sql);
-        $query->bind_param("iiisss", $idArchivo, $idUsuario, $nombreArchivo, $tipoArchivo, $rutaArchivo, date("Y-m-d"));
+        $query->bind_param("iiiss", $idArchivo, $idUsuario, $nombreArchivo, $tipoArchivo, $rutaArchivo);
         $query->execute();
         $query->close();
     }
@@ -270,7 +270,7 @@ class Gestor extends Conectar {
             $rutaArchivo = $fila['ruta'];
 
             // Mover físicamente el archivo al directorio correspondiente
-            $directorioDestino = "../../archivos";  // Ajusta la ruta según tu estructura de carpetas
+            $directorioDestino = "../Controllers/gestor/archivos/" . $_SESSION['nombre_usuario'];  // Ajusta la ruta según tu estructura de carpetas
             $rutaArchivoRestaurado = $directorioDestino . '/' . $nombreArchivo;
 
             // Restaurar el archivo a la tabla de archivos
