@@ -145,7 +145,7 @@ include "footer.php";
 </script>
 
 <!--Dependencia de usuarios, todas las funciones js de usuarios-->
-<script src="../js/usuarios.js"></script>
+<script src="../resources/js/usuarios.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function() {

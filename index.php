@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="css/login.css">
-    <link rel="stylesheet" type="text/css" href="librerias/bootstrap5/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/login.css">
+    <link rel="stylesheet" type="text/css" href="resources/librerias/bootstrap5/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
@@ -45,7 +45,7 @@
 
             <!-- Icon -->
             <div class="fadeIn first">
-                <img src="img/logo.jpg" id="icon" alt="User Icon" />
+                <img src="resources/img/logo.jpg" id="icon" alt="User Icon" />
                 <h1>Gestión de Archivos GAD las Pampas</h1>
             </div>
 
@@ -66,8 +66,8 @@
             </div>
         </div>
     </div>
-    <script src="librerias/jquery-3.7.1.min.js"></script>
-    <script src="librerias/sweetalert.min.js"></script>
+    <script src="resources/librerias/jquery-3.7.1.min.js"></script>
+    <script src="resources/librerias/sweetalert.min.js"></script>
     <script type="text/javascript">
         document.getElementById("togglePassword").addEventListener("click", function () {
             var passwordField = document.getElementById("password");
