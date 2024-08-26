@@ -41,6 +41,9 @@ if (isset($_SESSION['usuario'])){
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
+            <!-- PRUEBA -->
+
             <div class="modal-body">
                 <form id="frmUsuarios">
                     <label>Nombre</label>
@@ -62,11 +65,12 @@ if (isset($_SESSION['usuario'])){
                         <option value="administrador">administrador</option>
                     </select>
                 </form>
-            </div>
+            </div>  
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-primary" id="btnGuardarUsuario">Guardar</button>
             </div>
+
         </div>
     </div>
 </div>

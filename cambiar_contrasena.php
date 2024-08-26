@@ -3,6 +3,7 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nueva_contrasena = $_POST["contrasena"];
+        $email = $_POST['email'];
 
     // Aquí debes obtener el correo del usuario desde la sesión o de tu base de datos
 
@@ -23,7 +24,7 @@
         <body>
             <div class="container">
                 <h2 style="text-align: center">Cambiar Contraseña</h2>
-                <form action="procesos/contrasena/procesar_cambio.php" method="post" class="col-sm-4 offset-sm-4">
+                <form action="Controllers/contrasena/procesar_solicitud.php" method="post" class="col-sm-4 offset-sm-4">
                     <div class="mb-3">
                         <label for="contrasena" class="form-label">Nueva Contraseña:</label>
                         <input type="password" id="contrasena" name="contrasena" class="form-control" required>

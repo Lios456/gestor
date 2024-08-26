@@ -20,6 +20,16 @@ if (!$fechaNacimiento || $fechaNacimiento->format('Y-m-d') !== $fechaNacimientoU
     exit;
 }
 
+// verificar si es mayor de 18 años
+$hoy = new DateTime();
+$diferencia = $hoy->diff($fechaNacimiento);
+$edad = $diferencia->y;
+
+if ($edad < 18 || $edad > 80) {
+    echo "La edad no es correcta";
+    exit();
+}
+
 // Validar correo electrónico
 if (!filter_var($correoUsuario, FILTER_VALIDATE_EMAIL)) {
     echo "Correo electrónico inválido";
