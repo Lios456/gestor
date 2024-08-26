@@ -91,7 +91,7 @@ class Gestor extends Conectar {
         $rutaArchivo = $this->obtenerRutaArchivo($idArchivo);
 
         // Definir la ruta de la carpeta de la papelera
-        $carpetaPapelera = "../Controllers/gestor/archivos/papelera";
+        $carpetaPapelera = "../Controllers/gestor/archivos/papelera/"; //Direccionamiento correcto para la ruta de la papelera
         $nuevaRuta = $carpetaPapelera . $nombreArchivoAnterior;
 
         // Crear la carpeta "papelera" si no existe
@@ -270,7 +270,7 @@ class Gestor extends Conectar {
             $rutaArchivo = $fila['ruta'];
 
             // Mover físicamente el archivo al directorio correspondiente
-            $directorioDestino = "../Controllers/gestor/archivos/" . $_SESSION['nombre_usuario'];  // Ajusta la ruta según tu estructura de carpetas
+            $directorioDestino = "../Controllers/gestor/archivos/papelera" . $_SESSION['nombre_usuario'];  // Ajusta la ruta según tu estructura de carpetas
             $rutaArchivoRestaurado = $directorioDestino . '/' . $nombreArchivo;
 
             // Restaurar el archivo a la tabla de archivos
