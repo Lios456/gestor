@@ -246,7 +246,7 @@ class Gestor extends Conectar {
 
     public function restaurarArchivoPapelera($idArchivo) {
         $conexion = Conectar::conexion();
-
+        /*
         // Obtener datos del archivo antes de restaurar
         $sql = "SELECT * FROM papelera WHERE id_archivo = ?";
         $query = $conexion->prepare($sql);
@@ -262,10 +262,13 @@ class Gestor extends Conectar {
             $nombreArchivo = $fila['nombre'];
             $tipoArchivo = $fila['tipo'];
             $rutaArchivo = $fila['ruta'];
+            
+            
 
             // Mover físicamente el archivo al directorio correspondiente
             $directorioDestino = "../Controllers/gestor/archivos/papelera" . $_SESSION['nombre_usuario'];  // Ajusta la ruta según tu estructura de carpetas
             $rutaArchivoRestaurado = $directorioDestino . '/' . $nombreArchivo;
+            
 
             // Restaurar el archivo a la tabla de archivos
             $sqlRestaurar = "INSERT INTO archivos (id_usuario, id_categoria, nombre, tipo, ruta, fecha) VALUES (?, ?, ?, ?, ?, NOW())";
@@ -291,8 +294,27 @@ class Gestor extends Conectar {
                 }
             }
         }
+        */
 
-        return false;
+        try{
+            // RESTAURAMOS EL ESTADO DEL ARCHIVO
+            $sql = "UPDATE gestor.archivos SET estado = 'Activo' WHERE id_archivo = ?";
+            $cmd = $conexion->prepare($sql);
+            $cmd->bind_param("i", $idArchivo);
+            $cmd->execute();
+
+            //  ELIMINAMOS EL REGISTRO DE LA PAPELERA
+            $sql2 = "DELETE FROM gestor.papelera WHERE id_archivo = ?";
+            $cmd2 = $conexion->prepare($sql2);
+            $cmd2->bind_param("i",$idArchivo);
+            $cmd2->execute();
+            return true;
+        }catch(Exception $ex){
+            $msg = $ex->getMessage();
+            echo "swa('$msg', 'error')";
+            return false;
+        }
+        
     }
 
     private function registrarAuditoriaCreacion($accion, $detalle, $idUsuario, $idArchivo = null, $nombreArchivo = null) {
