@@ -41,7 +41,7 @@ $conexion = $conexion->conexion();
                     */
                     $extensionesValidas = array('docx', 'pdf', 'xlsx');
 
-                    if ($result) {
+                    if ($result->num_rows > 0) {
                         while ($mostrar = mysqli_fetch_array($result)) {
                             $nombreArchivo = $mostrar['nombreArchivo'];
                             $idArchivo = $mostrar['idArchivo'];

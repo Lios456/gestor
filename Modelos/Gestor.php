@@ -78,8 +78,8 @@ class Gestor extends Conectar {
     public function eliminarRegistroArchivo($idArchivo) {
         $conexion = Conectar::conexion();
 
-        // Obtener datos del archivo antes de eliminar
-        $idArchivoAnterior = $idArchivo;  // Guarda el ID antes de eliminar
+        
+        $idArchivoAnterior = $idArchivo;
         $nombreArchivoAnterior = $this->obtenNombreArchivoAnterior($idArchivo);
 
         $idUsuario = $_SESSION['idUsuario'];
@@ -156,7 +156,7 @@ class Gestor extends Conectar {
         $conexion = Conectar::conexion();
         $sql = "INSERT INTO papelera (id_archivo, id_usuario, nombre, tipo, ruta, fecha_eliminacion) VALUES (?,?,?,?,?,NOW())";
         $query = $conexion->prepare($sql);
-        $query->bind_param("iiiss", $idArchivo, $idUsuario, $nombreArchivo, $tipoArchivo, $rutaArchivo);
+        $query->bind_param("iisss", $idArchivo, $idUsuario, $nombreArchivo, $tipoArchivo, $rutaArchivo);
         $query->execute();
         $query->close();
     }
