@@ -99,28 +99,23 @@ class Gestor extends Conectar {
         }
 
         // Agregar un registro en la tabla de papelera
-        $this->agregarRegistroPapelera($idArchivo, $idUsuario, $idCategoria, $nombreArchivoAnterior, $tipoArchivo, $nuevaRuta);
-
-        // Copiar el archivo a la carpeta de la papelera
-        if (copy($rutaArchivo, $nuevaRuta)) {
-            // Eliminar el archivo original
-            unlink($rutaArchivo);
-
-            // Eliminar el registro de la base de datos
+        try{
             $sql = "UPDATE gestor.archivos SET estado = 'Borrado' WHERE id_archivo = ?";
             $query = $conexion->prepare($sql);
             $query->bind_param('i', $idArchivo);
             $respuesta = $query->execute();
             $query->close();
-
             if ($respuesta) {
                 // Registro de auditoría después de mover a la papelera
                 $detalle = "Se eliminó el archivo con ID $idArchivoAnterior y nombre: $nombreArchivoAnterior a la papelera";
                 $this->registrarAuditoriaEliminacion("Enviar a Papelera", $detalle, $_SESSION['idUsuario'], $idArchivoAnterior, $nombreArchivoAnterior);
             }
-        } else {
+            $this->agregarRegistroPapelera($idArchivo, $idUsuario, $idCategoria, $nombreArchivoAnterior, $tipoArchivo, $nuevaRuta);
+        }catch(Exception $ex){
+            echo $ex->getMessage();
             $respuesta = false;
         }
+        
 
         return $respuesta;
     }

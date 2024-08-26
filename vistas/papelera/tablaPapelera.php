@@ -12,6 +12,7 @@ $conexion = $conexion->conexion();
             <table class="table table-hover table-primary table-striped" id="tablaPapeleraDatatable">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Nombre</th>
                         <th>Extensión de archivo</th>
                         <th>Restaurar</th>
@@ -45,11 +46,13 @@ $conexion = $conexion->conexion();
                         while ($mostrar = mysqli_fetch_array($result)) {
                             $nombreArchivo = $mostrar['nombreArchivo'];
                             $idArchivo = $mostrar['idArchivo'];
+                            $tipoArchivo = $mostrar['tipoArchivo'];
                         }
                         ?>
                         <tr>
+                            <td><?php echo $idArchivo ?></td>
                             <td><?php echo $nombreArchivo; ?></td>
-                            <td><?php echo $idArchivo; ?></td>
+                            <td><?php echo $tipoArchivo; ?></td>
                             <td>
                                 <span class="btn btn-success btn-sm"
                                     onclick="restaurarArchivoPapelera(<?php echo $idArchivo; ?>)">
