@@ -8,19 +8,7 @@ $c = new Conectar();
 $conexion = $c->conexion();
 $idUsuario = $_SESSION["idUsuario"];
 $rolUsuario = obtenerRolUsuario();
-$sql = "SELECT archivos.id_archivo AS idArchivo,
-    usuario.nombre AS nombreUsuario,
-    categorias.nombre AS categoria,
-    archivos.nombre AS nombreArchivo,
-    archivos.tipo AS tipoArchivo,
-    archivos.ruta AS rutaArchivo,
-    archivos.fecha AS fecha
-    FROM archivos AS archivos
-    INNER JOIN usuarios AS usuario
-    ON archivos.id_usuario = usuario.id_usuario
-    INNER JOIN categorias AS categorias
-    ON archivos.id_categoria = categorias.id_categoria
-    WHERE usuario.id_usuario = '$idUsuario'";
+$sql = "CALL sp_listar_archivos('$idUsuario')";
 $result = mysqli_query($conexion, $sql);
 ?>
 

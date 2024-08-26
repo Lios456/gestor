@@ -82,10 +82,9 @@ class Gestor extends Conectar {
         $idArchivoAnterior = $idArchivo;  // Guarda el ID antes de eliminar
         $nombreArchivoAnterior = $this->obtenNombreArchivoAnterior($idArchivo);
 
-        // Obtener datos adicionales necesarios (reemplaza esto con tu lógica real)
         $idUsuario = $_SESSION['idUsuario'];
-        $idCategoria = $this->obtenerIdCategoria($idArchivo);  // Necesitas implementar esta función
-        $tipoArchivo = $this->obtenerTipoArchivo($idArchivo);  // Usar $this-> para llamar a un método de la clase
+        $idCategoria = $this->obtenerIdCategoria($idArchivo);
+        $tipoArchivo = $this->obtenerTipoArchivo($idArchivo);
 
         // Obtener la ruta real del archivo antes de copiarlo
         $rutaArchivo = $this->obtenerRutaArchivo($idArchivo);
@@ -108,7 +107,7 @@ class Gestor extends Conectar {
             unlink($rutaArchivo);
 
             // Eliminar el registro de la base de datos
-            $sql = "DELETE FROM archivos WHERE id_archivo = ?";
+            $sql = "UPDATE gestor.archivos SET estado = 'Borrado' WHERE id_archivo = ?";
             $query = $conexion->prepare($sql);
             $query->bind_param('i', $idArchivo);
             $respuesta = $query->execute();
