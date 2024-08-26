@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="resources/css/login.css">
+    <link rel="stylesheet" type="text/css" href="resources/librerias/sweetalert.min.js">
     <link rel="stylesheet" type="text/css" href="resources/librerias/bootstrap5/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -61,13 +62,29 @@
 
             <!-- Remind Password -->
             <div id="formFooter">
-                <a class="forgot-password-link" href="solicitud_cambio.php">¿Olvidaste tu contraseña?</a>
+                <a class="forgot-password-link" href="solicitud_cambio.php" id="alertLink">¿Olvidaste tu contraseña?</a>
                 <!--<button class="btn btn-success" onclick="redirectToRegistro()">Registrar</button>-->
             </div>
         </div>
     </div>
     <script src="resources/librerias/jquery-3.7.1.min.js"></script>
     <script src="resources/librerias/sweetalert.min.js"></script>
+
+
+    <!-- Alerta de contraseña olvidada -->
+    <script>
+        document.getElementById("alertLink").addEventListener("click", function(event){
+            event.preventDefault();
+            
+            swal({
+            title: "¿Problemas con su contraseña?",
+            text: "Contactese con el personal de soporte.",
+            icon: "info",
+            button: "Entendido"
+            });
+        });
+    </script>
+
     <script type="text/javascript">
         document.getElementById("togglePassword").addEventListener("click", function () {
             var passwordField = document.getElementById("password");

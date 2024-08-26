@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solicitud de Cambio de Contraseña</title>
-    <link rel="stylesheet" type="text/css" href="librerias/bootstrap5/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="librerias/jquery-ui-1.13.2/jquery-ui.theme.css">
-    <link rel="stylesheet" type="text/css" href="librerias/jquery-ui-1.13.2/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="resources/librerias/bootstrap5/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="resources/librerias/jquery-ui-1.13.2/jquery-ui.theme.css">
+    <link rel="stylesheet" type="text/css" href="resources/librerias/jquery-ui-1.13.2/jquery-ui.css">
 </head>
 <body>
     <div class="container">
@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
-                <form action="procesos/contrasena/procesar_solicitud.php" method="post">
+                <form action="cambiar_contrasena.php" method="post">
                     <label for="correo">Correo Electrónico:</label>
                     <input type="email" id="correo" name="correo" class="form-control" required>
                     <br>
@@ -26,9 +26,9 @@
             <div class="col-sm-4"></div>
         </div>
     </div>
-    <script src="librerias/jquery-3.7.1.min.js"></script>
-    <script src="librerias/jquery-ui-1.13.2/jquery-ui.js"></script>
-    <script src="librerias/sweetalert.min.js"></script>
+    <script src="resources/librerias/jquery-3.7.1.min.js"></script>
+    <script src="resources/librerias/jquery-ui-1.13.2/jquery-ui.js"></script>
+    <script src="resources/librerias/sweetalert.min.js"></script>
     <script type="text/javascript">
         // Puedes agregar aquí cualquier script adicional que necesites para la página
     </script>

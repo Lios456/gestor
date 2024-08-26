@@ -11,14 +11,14 @@
     echo "Contraseña cambiada exitosamente.";
 ?>
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="es">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Cambiar Contraseña</title>
-            <link rel="stylesheet" type="text/css" href="librerias/bootstrap5/bootstrap.min.css">
-            <link rel="stylesheet" type="text/css" href="librerias/jquery-ui-1.13.2/jquery-ui.theme.css">
-            <link rel="stylesheet" type="text/css" href="librerias/jquery-ui-1.13.2/jquery-ui.css">
+            <link rel="stylesheet" type="text/css" href="resources/librerias/bootstrap5/bootstrap.min.css">
+            <link rel="stylesheet" type="text/css" href="resources/librerias/jquery-ui-1.13.2/jquery-ui.theme.css">
+            <link rel="stylesheet" type="text/css" href="resources/librerias/jquery-ui-1.13.2/jquery-ui.css">
         </head>
         <body>
             <div class="container">
@@ -32,9 +32,9 @@
                     <button type="submit" class="btn btn-primary">Cambiar Contraseña</button>
                 </form>
             </div>
-            <script src="librerias/jquery-3.7.1.min.js"></script>
-            <script src="librerias/jquery-ui-1.13.2/jquery-ui.js"></script>
-            <script src="librerias/sweetalert.min.js"></script>
+            <script src="resources/librerias/jquery-3.7.1.min.js"></script>
+            <script src="resources/librerias/jquery-ui-1.13.2/jquery-ui.js"></script>
+            <script src="resources/librerias/sweetalert.min.js"></script>
             <script type="text/javascript">
                 // Puedes agregar aquí cualquier script adicional que necesites para la página
             </script>
