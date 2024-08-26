@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-08-2024 a las 00:19:29
+-- Tiempo de generación: 26-08-2024 a las 05:04:36
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -52,6 +52,22 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insertar_usuario` (IN `p_nombre`
     END IF;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_listar_archivos` (IN `IdUsuario` INT)   BEGIN
+	SELECT archivos.id_archivo AS idArchivo,
+    usuario.nombre AS nombreUsuario,
+    categorias.nombre AS categoria,
+    archivos.nombre AS nombreArchivo,
+    archivos.tipo AS tipoArchivo,
+    archivos.ruta AS rutaArchivo,
+    archivos.fecha AS fecha
+    FROM archivos AS archivos
+    INNER JOIN usuarios AS usuario
+    ON archivos.id_usuario = usuario.id_usuario
+    INNER JOIN categorias AS categorias
+    ON archivos.id_categoria = categorias.id_categoria
+    WHERE usuario.id_usuario = IdUsuario AND archivos.estado = 'Activo';
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_listar_usuarios` ()   BEGIN
 	SELECT id_usuario, nombre, fechaNacimiento, email, usuario, rol  FROM usuarios WHERE estado = 'Activo';
 END$$
@@ -71,29 +87,31 @@ CREATE TABLE `archivos` (
   `nombre` varchar(255) NOT NULL,
   `tipo` varchar(255) NOT NULL,
   `ruta` text NOT NULL,
-  `fecha` datetime NOT NULL DEFAULT current_timestamp()
+  `fecha` datetime NOT NULL DEFAULT current_timestamp(),
+  `estado` varchar(45) NOT NULL DEFAULT 'Activo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `archivos`
 --
 
-INSERT INTO `archivos` (`id_archivo`, `id_usuario`, `id_categoria`, `nombre`, `tipo`, `ruta`, `fecha`) VALUES
-(1, 1, 2, 'Guía instalación Odoo 17  - Gratuito.pdf', 'pdf', '../../archivos/Guía instalación Odoo 17  - Gratuito.pdf', '2024-06-04 19:34:19'),
-(2, 1, 2, 'Vigilia de Pentecostés (cantos).pdf', 'pdf', '../../archivos/Vigilia de Pentecostés (cantos).pdf', '2024-06-04 19:34:48'),
-(3, 1, 1, 'Herramientas usadas.docx', 'docx', '../../archivos/Herramientas usadas.docx', '2024-06-06 23:06:31'),
-(4, 1, 3, 'Libro1.xlsx', 'xlsx', '../../archivos/Libro1.xlsx', '2024-06-06 23:07:00'),
-(5, 1, 1, 'ahorros.xlsx', 'xlsx', '../../archivos/ahorros.xlsx', '2024-06-06 23:07:37'),
-(6, 1, 1, 'Plan de titulación - Freddy Bazante - versión 2.docx', 'docx', '../../archivos/Plan de titulación - Freddy Bazante - versión 2.docx', '2024-06-06 23:08:19'),
-(7, 1, 1, 'Proyecto Integrador - Freddy Bazante - version4.docx', 'docx', '../../archivos/Proyecto Integrador - Freddy Bazante - version4.docx', '2024-06-06 23:08:51'),
-(15, 1, 2, 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'pdf', 'C:/xampp/htdocs/gestor/procesos/gestor/archivos/Administrador/Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', '2024-08-24 10:42:18'),
-(16, 52, 2, 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'pdf', '../../procesos/gestor/archivos/Juanito/Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', '2024-08-24 11:04:29'),
-(17, 52, 2, '09GIC Bohr.pdf', 'pdf', '../../Controllers/gestor/archivos/Juanito/09GIC Bohr.pdf', '2024-08-25 00:01:10'),
-(18, 83, 2, '02GIC Newton.pdf', 'pdf', '../../Controllers/gestor/archivos/nelsonsito/02GIC Newton.pdf', '2024-08-25 01:28:08'),
-(19, 1, 2, '41GIC Riemann.pdf', 'pdf', '../../Controllers/gestor/archivos/Administrador/41GIC Riemann.pdf', '2024-08-25 13:08:46'),
-(20, 86, 2, 'El origen de los dioses - Christian Jacq.pdf', 'pdf', '../../Controllers/gestor/archivos/Lios/El origen de los dioses - Christian Jacq.pdf', '2024-08-25 14:39:23'),
-(21, 86, 1, 'listas para viajar en el bus (1).docx', 'docx', '../../Controllers/gestor/archivos/Lios/listas para viajar en el bus (1).docx', '2024-08-25 14:40:55'),
-(22, 86, 3, 'Ec_calculo.xlsx', 'xlsx', '../../Controllers/gestor/archivos/Lios/Ec_calculo.xlsx', '2024-08-25 16:07:36');
+INSERT INTO `archivos` (`id_archivo`, `id_usuario`, `id_categoria`, `nombre`, `tipo`, `ruta`, `fecha`, `estado`) VALUES
+(1, 1, 2, 'Guía instalación Odoo 17  - Gratuito.pdf', 'pdf', '../../Controllers/gestor/archivos/Administrador/Guía instalación Odoo 17  - Gratuito.pdf', '2024-06-04 19:34:19', 'Activo'),
+(2, 1, 2, 'Vigilia de Pentecostés (cantos).pdf', 'pdf', '../../Controllers/gestor/archivos/Administrador/Vigilia de Pentecostés (cantos).pdf', '2024-06-04 19:34:48', 'Activo'),
+(3, 1, 1, 'Herramientas usadas.docx', 'docx', '../../Controllers/gestor/archivos/Administrador/Herramientas usadas.docx', '2024-06-06 23:06:31', 'Activo'),
+(4, 1, 3, 'Libro1.xlsx', 'xlsx', '../../Controllers/gestor/archivos/Administrador/Libro1.xlsx', '2024-06-06 23:07:00', 'Borrado'),
+(5, 1, 1, 'ahorros.xlsx', 'xlsx', '../../Controllers/gestor/archivos/Administrador/ahorros.xlsx', '2024-06-06 23:07:37', 'Activo'),
+(6, 1, 1, 'Plan de titulación - Freddy Bazante - versión 2.docx', 'docx', '../../Controllers/gestor/archivos/Administrador/Plan de titulación - Freddy Bazante - versión 2.docx', '2024-06-06 23:08:19', 'Activo'),
+(7, 1, 1, 'Proyecto Integrador - Freddy Bazante - version4.docx', 'docx', '../../Controllers/gestor/archivos/Administrador/Proyecto Integrador - Freddy Bazante - version4.docx', '2024-06-06 23:08:51', 'Activo'),
+(15, 1, 2, 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'pdf', '../../Controllers/gestor/archivos/Administrador/Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', '2024-08-24 10:42:18', 'Activo'),
+(16, 52, 2, 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'pdf', '../../Controllers/gestor/archivos/Juanito/Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', '2024-08-24 11:04:29', 'Activo'),
+(17, 52, 2, '09GIC Bohr.pdf', 'pdf', '../../Controllers/gestor/archivos/Juanito/09GIC Bohr.pdf', '2024-08-25 00:01:10', 'Activo'),
+(18, 83, 2, '02GIC Newton.pdf', 'pdf', '../../Controllers/gestor/archivos/nelsonsito/02GIC Newton.pdf', '2024-08-25 01:28:08', 'Activo'),
+(19, 1, 2, '41GIC Riemann.pdf', 'pdf', '../../Controllers/gestor/archivos/Administrador/41GIC Riemann.pdf', '2024-08-25 13:08:46', 'Activo'),
+(20, 86, 2, 'El origen de los dioses - Christian Jacq.pdf', 'pdf', '../../Controllers/gestor/archivos/Lios/El origen de los dioses - Christian Jacq.pdf', '2024-08-25 14:39:23', 'Activo'),
+(21, 86, 1, 'listas para viajar en el bus (1).docx', 'docx', '../../Controllers/gestor/archivos/Lios/listas para viajar en el bus (1).docx', '2024-08-25 14:40:55', 'Activo'),
+(22, 86, 3, 'Ec_calculo.xlsx', 'xlsx', '../../Controllers/gestor/archivos/Lios/Ec_calculo.xlsx', '2024-08-25 16:07:36', 'Activo'),
+(23, 86, 2, 'EDUCACIÓN AMBIENTAL.pdf', 'pdf', '../../Controllers/gestor/archivos/Lios/EDUCACIÓN AMBIENTAL.pdf', '2024-08-25 17:33:19', 'Activo');
 
 -- --------------------------------------------------------
 
@@ -197,7 +215,16 @@ INSERT INTO `auditoria` (`id_auditoria`, `id_usuario`, `accion`, `id_archivo`, `
 (186, 1, 'Agregar', 19, '2024-08-25 13:08:46', 'Se agregó un nuevo archivo con nombre: 41GIC Riemann.pdf', '41GIC Riemann.pdf', '41GIC Riemann.pdf'),
 (194, 86, 'Agregar', 20, '2024-08-25 14:39:23', 'Se agregó un nuevo archivo con nombre: El origen de los dioses - Christian Jacq.pdf', 'El origen de los dioses - Christian Jacq.pdf', 'El origen de los dioses - Christian Jacq.pdf'),
 (195, 86, 'Agregar', 21, '2024-08-25 14:40:55', 'Se agregó un nuevo archivo con nombre: listas para viajar en el bus (1).docx', 'listas para viajar en el bus (1).docx', 'listas para viajar en el bus (1).docx'),
-(210, 86, 'Agregar', 22, '2024-08-25 16:07:36', 'Se agregó un nuevo archivo con nombre: Ec_calculo.xlsx', 'Ec_calculo.xlsx', 'Ec_calculo.xlsx');
+(210, 86, 'Agregar', 22, '2024-08-25 16:07:36', 'Se agregó un nuevo archivo con nombre: Ec_calculo.xlsx', 'Ec_calculo.xlsx', 'Ec_calculo.xlsx'),
+(217, 86, 'Agregar', 23, '2024-08-25 17:33:19', 'Se agregó un nuevo archivo con nombre: EDUCACIÓN AMBIENTAL.pdf', 'EDUCACIÓN AMBIENTAL.pdf', 'EDUCACIÓN AMBIENTAL.pdf'),
+(220, 1, 'Agregar', 24, '2024-08-25 18:00:06', 'Se agregó un nuevo archivo con nombre: Consulta de química.docx', 'Consulta de química.docx', 'Consulta de química.docx'),
+(222, 1, 'Enviar a Papelera', 24, '2024-08-25 18:01:05', 'Se eliminó el archivo con ID 24 y nombre: Consulta de química.docx a la papelera', 'Consulta de química.docx', 'Consulta de química.docx'),
+(223, 1, 'Agregar', 25, '2024-08-25 18:02:20', 'Se agregó un nuevo archivo con nombre: Consulta de química.docx', 'Consulta de química.docx', 'Consulta de química.docx'),
+(225, 1, 'Enviar a Papelera', 25, '2024-08-25 18:03:26', 'Se eliminó el archivo con ID 25 y nombre: Consulta de química.docx a la papelera', 'Consulta de química.docx', 'Consulta de química.docx'),
+(227, 1, 'Agregar', 26, '2024-08-25 18:05:50', 'Se agregó un nuevo archivo con nombre: Consulta de química.docx', 'Consulta de química.docx', 'Consulta de química.docx'),
+(229, 1, 'Enviar a Papelera', 26, '2024-08-25 18:08:26', 'Se eliminó el archivo con ID 26 y nombre: Consulta de química.docx a la papelera', 'Consulta de química.docx', 'Consulta de química.docx'),
+(231, 1, 'Enviar a Papelera', 4, '2024-08-25 21:50:26', 'Se eliminó el archivo con ID 4 y nombre: Libro1.xlsx a la papelera', 'Libro1.xlsx', 'Libro1.xlsx'),
+(242, 2, 'Visualizar', NULL, '2024-08-25 21:58:08', NULL, '1', 'Se Visualizar el archivo: Vigilia de Pentecostés (cantos).pdf');
 
 -- --------------------------------------------------------
 
@@ -237,6 +264,19 @@ CREATE TABLE `papelera` (
   `fecha_eliminacion` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `papelera`
+--
+
+INSERT INTO `papelera` (`id_papelera`, `id_archivo`, `id_usuario`, `nombre`, `tipo`, `ruta`, `fecha_eliminacion`) VALUES
+(1, 24, 1, '0', 'docx', '../Controllers/gestor/archivos/papelera/Consulta de química.docx', '2024-08-26 00:00:00'),
+(2, 25, 1, '0', 'docx', '../Controllers/gestor/archivos/papeleraConsulta de química.docx', '2024-08-25 18:03:26'),
+(3, 26, 1, '0', 'docx', '../Controllers/gestor/archivos/papeleraConsulta de química.docx', '2024-08-25 18:07:04'),
+(4, 4, 1, '0', 'xlsx', '../Controllers/gestor/archivos/papelera/Libro1.xlsx', '2024-08-25 21:39:36'),
+(5, 4, 1, '0', 'xlsx', '../Controllers/gestor/archivos/papelera/Libro1.xlsx', '2024-08-25 21:41:05'),
+(6, 4, 1, '0', 'xlsx', '../Controllers/gestor/archivos/papelera/Libro1.xlsx', '2024-08-25 21:47:44'),
+(7, 4, 1, '0', 'xlsx', '../Controllers/gestor/archivos/papelera/Libro1.xlsx', '2024-08-25 21:50:25');
+
 -- --------------------------------------------------------
 
 --
@@ -262,7 +302,7 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id_usuario`, `nombre`, `fechaNacimiento`, `email`, `usuario`, `password`, `rol`, `fecha_insert`, `estado`) VALUES
 (1, 'Administrador', '2023-12-09', 'admin@admin.com', 'Administrador', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'administrador', '2023-12-26 09:21:06', 'Activo'),
 (2, 'Freddy', '2024-01-27', 'freddybazante@gmail.com', 'FreddyBazante', '60bc5f12113173298ddf295e7f7ee1107e083ff2', 'usuario', '2024-01-04 00:24:29', 'No Activo'),
-(52, 'Juan', '2024-08-07', 'juan@mail.com', 'Juanito', '60bc5f12113173298ddf295e7f7ee1107e083ff2', 'usuario', '2024-08-22 20:04:06', 'Activo'),
+(52, 'Juan', '2024-08-07', 'juan@mail.com', 'Juanito', '60bc5f12113173298ddf295e7f7ee1107e083ff2', 'administrador', '2024-08-22 20:04:06', 'Activo'),
 (83, 'Nelson', '2024-08-01', 'nelson@gmail.com', 'nelsonsito', '60bc5f12113173298ddf295e7f7ee1107e083ff2', 'usuario', '2024-08-25 01:23:26', 'Activo'),
 (86, 'LiosJ', '2023-08-01', 'lios@mail.com', 'Lios', '72eb94bef4fa9bf3c6317b52607eba8d4fae2523', 'administrador', '2024-08-25 14:37:50', 'Activo');
 
@@ -327,13 +367,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `archivos`
 --
 ALTER TABLE `archivos`
-  MODIFY `id_archivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_archivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `auditoria`
 --
 ALTER TABLE `auditoria`
-  MODIFY `id_auditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=215;
+  MODIFY `id_auditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -345,7 +385,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `papelera`
 --
 ALTER TABLE `papelera`
-  MODIFY `id_papelera` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_papelera` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
