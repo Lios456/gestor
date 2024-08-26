@@ -42,7 +42,8 @@ $result = mysqli_query($conexion, $sql);
                             <td>
                                 <a href="#" onclick="descargarArchivo('<?php echo $rutaDescarga; ?>', 
                                     '<?php echo $nombreArchivo; ?>', 
-                                    <?php echo $idUsuario; ?>, <?php echo $idArchivo; ?>)"
+                                    <?php echo $idUsuario; ?>, <?php echo $idArchivo; ?>,
+                                    '<?php echo $_SESSION['nombre_usuario'] ?>')"
                                     class="btn btn-success btn-sm">
                                     <span class="fas fa-download"></span>
                                 </a>
@@ -111,10 +112,30 @@ $result = mysqli_query($conexion, $sql);
         registrarAuditoria('Visualizar', nombreArchivo, nombreArchivoAnterior, '<?php echo $idUsuario; ?>', idArchivo);
     }
 
-    function descargarArchivo(ruta, nombreArchivo, idUsuario, idArchivo) {
+    function descargarArchivo(ruta, nombreArchivo, idUsuario, idArchivo, nombreUsuario) {
         var nombreArchivoAnterior = obtenerNombreArchivoAnterior(idArchivo);
+        console.log("Este es el nombre del archivo anterior = ", nombreArchivoAnterior);
         registrarAuditoria('Descargar', nombreArchivo, nombreArchivoAnterior, idUsuario, idArchivo);
-        window.location.href = ruta;
+        
+        // descargar el archivo
+        // Descargar el archivo
+        $.ajax(
+            {
+                type: "POST",
+                url: "../Controllers/gestor/descargarArchivo.php",
+                data: {
+                    nombreArchivo: nombreArchivo,
+                    nombreUsuario: nombreUsuario
+                },
+                async: false,
+                success:function(response){
+                    swal("El archivo se ha descargado con éxito", {icon: "success"});
+                },
+                error:function(error){
+                    swal("Error en la descarga " + error, {icon: "error"})
+                }
+            }
+        )
     }
 
     function registrarAuditoria(accion, nombreArchivo, nombreArchivoAnterior, idUsuario, idArchivo) {

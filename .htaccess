@@ -1,2 +1,3 @@
 RewriteEngine on 
 Options -Indexes
+RewriteRule ^gestor/Controllers/gestor/archivos/([^/]+)/([^/]+.pdf)$ check_user.php [L]
