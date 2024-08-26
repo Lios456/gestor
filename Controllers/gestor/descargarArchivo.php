@@ -1,27 +1,40 @@
 <?php
 
-if (isset($_POST['nombreArchivo'])) {
-    $archivo = basename($_POST['nombreArchivo']);
-    $rutaArchivo = 'archivos/' . $_POST['nombreUsuario'] . "/" . $archivo;
+if (isset($_GET['nombreArchivo']) && isset($_GET['nombreUsuario'])) {
+    $archivo = basename($_GET['nombreArchivo']);
+    $nombreUsuario = basename($_GET['nombreUsuario']);
+    $rutaArchivo = '../../Controllers/gestor/archivos/' . $nombreUsuario . "/" . $archivo;
 
-    // Verificar si el archivo existe
+
     if (file_exists($rutaArchivo)) {
-        // Establecer las cabeceras para forzar la descarga
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/pdf');
-        header('Content-Disposition: attachment; filename="' . $archivo . '"');
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
-        header('Content-Length: ' . filesize($rutaArchivo));
+        try {
 
-        // Limpiar el buffer de salida antes de enviar el archivo
-        ob_clean();
-        flush();
+            $tiposMime = [
+                'pdf' => 'application/pdf',
+                'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                'jpg' => 'image/jpeg',
+                'jpeg' => 'image/jpeg',
+                'png' => 'image/png',
+                'zip' => 'application/zip',
+                'txt' => 'text/plain',
+            ];
 
-        // Leer el archivo y enviarlo al usuario
-        readfile($rutaArchivo);
-        exit;
+            $extension = strtolower(pathinfo($archivo, PATHINFO_EXTENSION));
+
+            $tipoMime = isset($tiposMime[$extension]) ? $tiposMime[$extension] : 'application/octet-stream';
+
+            header('Content-Description: File Transfer');
+            header('Content-Type: ' . $tipoMime);
+            header('Content-Disposition: attachment; filename="' . $archivo . '"');
+            header('Content-Length: ' . filesize($rutaArchivo));
+
+            readfile($rutaArchivo);
+            echo 'Location: gestor.php';
+            exit;
+        } catch (Exception $ex) {
+            echo "Error: " . $ex->getMessage();
+        }
     } else {
         die('El archivo no existe en la ruta especificada.');
     }

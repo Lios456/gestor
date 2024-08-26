@@ -113,30 +113,17 @@ $result = mysqli_query($conexion, $sql);
     }
 
     function descargarArchivo(ruta, nombreArchivo, idUsuario, idArchivo, nombreUsuario) {
-        var nombreArchivoAnterior = obtenerNombreArchivoAnterior(idArchivo);
-        console.log("Este es el nombre del archivo anterior = ", nombreArchivoAnterior);
-        registrarAuditoria('Descargar', nombreArchivo, nombreArchivoAnterior, idUsuario, idArchivo);
-        
-        // descargar el archivo
-        // Descargar el archivo
-        $.ajax(
-            {
-                type: "POST",
-                url: "../Controllers/gestor/descargarArchivo.php",
-                data: {
-                    nombreArchivo: nombreArchivo,
-                    nombreUsuario: nombreUsuario
-                },
-                async: false,
-                success:function(response){
-                    swal("El archivo se ha descargado con éxito", {icon: "success"});
-                },
-                error:function(error){
-                    swal("Error en la descarga " + error, {icon: "error"})
-                }
-            }
-        )
-    }
+    var nombreArchivoAnterior = obtenerNombreArchivoAnterior(idArchivo);
+    console.log("Este es el nombre del archivo anterior = ", nombreArchivoAnterior);
+    registrarAuditoria('Descargar', nombreArchivo, nombreArchivoAnterior, idUsuario, idArchivo);
+
+    // Redirige a la URL de descarga
+    window.location.href = "../Controllers/gestor/descargarArchivo.php?nombreArchivo="
+    + encodeURIComponent(nombreArchivo) + 
+    "&nombreUsuario=" + 
+    encodeURIComponent(nombreUsuario);
+}
+
 
     function registrarAuditoria(accion, nombreArchivo, nombreArchivoAnterior, idUsuario, idArchivo) {
         var url = '..\\Controllers\\auditoria\\registrarAuditoria.php';
