@@ -23,6 +23,7 @@ $conexion = $conexion->conexion();
                     <?php
                     $sql = "SELECT
                                 papelera.id_papelera,
+                                usuario.id_usuario AS idusu,
                                 papelera.id_archivo AS idArchivo,
                                 usuario.nombre AS nombreUsuario,
                                 papelera.nombre AS nombreArchivo,
@@ -47,6 +48,7 @@ $conexion = $conexion->conexion();
                             $nombreArchivo = $mostrar['nombreArchivo'];
                             $idArchivo = $mostrar['idArchivo'];
                             $tipoArchivo = $mostrar['tipoArchivo'];
+                            $idusu = $mostrar['idusu'];
                         }
                         ?>
                         <tr>
@@ -55,7 +57,10 @@ $conexion = $conexion->conexion();
                             <td><?php echo $tipoArchivo; ?></td>
                             <td>
                                 <span class="btn btn-success btn-sm"
-                                    onclick="restaurarArchivoPapelera(<?php echo $idArchivo; ?>)">
+                                    onclick="restaurarArchivoPapelera('<?php echo $idArchivo; ?>',
+                                     '<?php echo $nombreArchivo ?>', 
+                                     '<?php echo $nombreArchivo ?>', 
+                                     '<?php echo $idusu ?> ')">
                                     <span class="fas fa-undo"></span>
                                 </span>
                             </td>
@@ -78,4 +83,25 @@ $conexion = $conexion->conexion();
     $(document).ready(function () {
         $('#tablaPapeleraDatatable').DataTable();
     });
+
+    function registrarAuditoria(accion, nombreArchivo, nombreArchivoAnterior, idUsuario, idArchivo) {
+        var url = '../Controllers/auditoria/registrarAuditoria.php';
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: {
+                accion: accion,
+                nombreArchivo: nombreArchivo,
+                nombreArchivoAnterior: nombreArchivoAnterior,
+                idUsuario: idUsuario,
+                idArchivo: idArchivo
+            },
+            success: function (data) {
+                console.log("Auditoría registrada con éxito");
+            },
+            error: function (error) {
+                console.error("Error al registrar auditoría", error);
+            }
+        });
+    }
 </script>
