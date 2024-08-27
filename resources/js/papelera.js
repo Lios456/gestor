@@ -26,7 +26,7 @@ function eliminarArchivoPapelera(idArchivo) {
     });
 }
 
-function restaurarArchivoPapelera(idArchivo) {
+function restaurarArchivoPapelera(idArchivo, nombreArchivo, nombreArchivoAnterior, idUsuario) {
     swal({
         title: "Estás seguro de restaurar este archivo?",
         text: "El archivo se restaurará a su ubicación original!",
@@ -45,6 +45,7 @@ function restaurarArchivoPapelera(idArchivo) {
                     if (respuesta > 0) {
                         // La restauración fue exitosa
                         $('#tablaPapelera').load("papelera/tablaPapelera.php");
+                        registrarAuditoria('Restaurar', nombreArchivo, nombreArchivoAnterior, idUsuario, idArchivo);
                         swal("Restaurado con éxito!", { icon: "success" });
                     } else {
                         // La restauración no fue exitosa
