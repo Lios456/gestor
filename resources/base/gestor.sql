@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-08-2024 a las 04:38:52
+-- Tiempo de generación: 27-08-2024 a las 05:24:15
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -72,6 +72,13 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_listar_usuarios` ()   BEGIN
 	SELECT id_usuario, nombre, fechaNacimiento, email, usuario, rol  FROM usuarios WHERE estado = 'Activo';
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_mostrar_auditoria` ()   BEGIN
+SELECT a.id_auditoria, u.nombre AS nombre_usuario, a.accion, a.nombre_archivo_anterior, a.fecha 
+FROM auditoria a 
+LEFT JOIN usuarios u ON a.id_usuario = u.id_usuario 
+ORDER BY a.id_auditoria DESC;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_registrar_auditoria` (IN `idUsuario` INT, IN `accion` VARCHAR(100), IN `idArchivo` INT, IN `detalle` TEXT, IN `nombrearch` TEXT, IN `nomarch` TEXT)   BEGIN
 	INSERT INTO gestor.auditoria(
 		id_usuario,
@@ -125,7 +132,8 @@ INSERT INTO `archivos` (`id_archivo`, `id_usuario`, `id_categoria`, `nombre`, `t
 (20, 86, 2, 'El origen de los dioses - Christian Jacq.pdf', 'pdf', '../../Controllers/gestor/archivos/Lios/El origen de los dioses - Christian Jacq.pdf', '2024-08-25 14:39:23', 'Activo'),
 (21, 86, 1, 'listas para viajar en el bus (1).docx', 'docx', '../../Controllers/gestor/archivos/Lios/listas para viajar en el bus (1).docx', '2024-08-25 14:40:55', 'Activo'),
 (22, 86, 3, 'Ec_calculo.xlsx', 'xlsx', '../../Controllers/gestor/archivos/Lios/Ec_calculo.xlsx', '2024-08-25 16:07:36', 'Activo'),
-(23, 86, 2, 'EDUCACIÓN AMBIENTAL.pdf', 'pdf', '../../Controllers/gestor/archivos/Lios/EDUCACIÓN AMBIENTAL.pdf', '2024-08-25 17:33:19', 'Activo');
+(23, 86, 2, 'EDUCACIÓN AMBIENTAL.pdf', 'pdf', '../../Controllers/gestor/archivos/Lios/EDUCACIÓN AMBIENTAL.pdf', '2024-08-25 17:33:19', 'Activo'),
+(24, 1, 2, 'Ortografía y gramática para Dummies - Pilar Comin Sebastian.pdf', 'pdf', '../../Controllers/gestor/archivos/Administrador/Ortografía y gramática para Dummies - Pilar Comin Sebastian.pdf', '2024-08-26 21:59:03', 'Activo');
 
 -- --------------------------------------------------------
 
@@ -154,7 +162,14 @@ INSERT INTO `auditoria` (`id_auditoria`, `id_usuario`, `accion`, `id_archivo`, `
 (3, 1, 'Visualizar', 7, '2024-08-26 21:35:17', 'Se Visualizar el archivo: Proyecto Integrador - Freddy Bazante - version4.docx', 'Proyecto Integrador - Freddy Bazante - version4.docx', 'Proyecto Integrador - Freddy Bazante - version4.docx'),
 (4, 1, 'Visualizar', 1, '2024-08-26 21:35:23', 'Se Visualizar el archivo: Guía instalación Odoo 17  - Gratuito.pdf', 'Guía instalación Odoo 17  - Gratuito.pdf', 'Guía instalación Odoo 17  - Gratuito.pdf'),
 (5, 1, 'Visualizar', 15, '2024-08-26 21:35:26', 'Se Visualizar el archivo: Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf'),
-(6, 1, 'Visualizar', 19, '2024-08-26 21:35:28', 'Se Visualizar el archivo: 41GIC Riemann.pdf', '41GIC Riemann.pdf', '41GIC Riemann.pdf');
+(6, 1, 'Visualizar', 19, '2024-08-26 21:35:28', 'Se Visualizar el archivo: 41GIC Riemann.pdf', '41GIC Riemann.pdf', '41GIC Riemann.pdf'),
+(7, 52, 'Visualizar', 16, '2024-08-26 21:44:06', 'Se Visualizar el archivo: Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf', 'Dialnet-UsabilidadEnAplicacionesMoviles-5123524.pdf'),
+(8, 52, 'Visualizar', 17, '2024-08-26 21:44:08', 'Se Visualizar el archivo: 09GIC Bohr.pdf', '09GIC Bohr.pdf', '09GIC Bohr.pdf'),
+(9, 86, 'Visualizar', 21, '2024-08-26 21:45:33', 'Se Visualizar el archivo: listas para viajar en el bus (1).docx', 'listas para viajar en el bus (1).docx', 'listas para viajar en el bus (1).docx'),
+(10, 86, 'Visualizar', 21, '2024-08-26 21:45:37', 'Se Visualizar el archivo: listas para viajar en el bus (1).docx', 'listas para viajar en el bus (1).docx', 'listas para viajar en el bus (1).docx'),
+(11, 1, 'Agregar', 24, '2024-08-26 21:59:03', 'Se agregó un nuevo archivo con nombre: Ortografía y gramática para Dummies - Pilar Comin Sebastian.pdf', 'Ortografía y gramática para Dummies - Pilar Comin Sebastian.pdf', 'Ortografía y gramática para Dummies - Pilar Comin Sebastian.pdf'),
+(12, 1, 'Visualizar', 24, '2024-08-26 21:59:12', 'Se Visualizar el archivo: Ortografía y gramática para Dummies - Pilar Comin Sebastian.pdf', 'Ortografía y gramática para Dummies - Pilar Comin Sebastian.pdf', 'Ortografía y gramática para Dummies - Pilar Comin Sebastian.pdf'),
+(13, 1, 'Enviar a Papelera', 24, '2024-08-26 21:59:29', 'Se eliminó el archivo con ID 24 y nombre: Ortografía y gramática para Dummies - Pilar Comin Sebastian.pdf a la papelera', 'Ortografía y gramática para Dummies - Pilar Comin Sebastian.pdf', 'Ortografía y gramática para Dummies - Pilar Comin Sebastian.pdf');
 
 -- --------------------------------------------------------
 
@@ -284,13 +299,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `archivos`
 --
 ALTER TABLE `archivos`
-  MODIFY `id_archivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_archivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `auditoria`
 --
 ALTER TABLE `auditoria`
-  MODIFY `id_auditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_auditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -302,7 +317,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `papelera`
 --
 ALTER TABLE `papelera`
-  MODIFY `id_papelera` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_papelera` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
