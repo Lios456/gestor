@@ -350,14 +350,20 @@ class Gestor extends Conectar {
         $query->close();
     }
 
-    public function registrarAuditoria($accion, $nombreArchivoActual, $nombreArchivoAnterior, $idUsuario, $idArchivo = null) {
-        $conexion = Conectar::conexion();
+    public function registrarAuditoria($idusu, $accion, $idarch, $detalle, $nombreant, $nombrearch) {
+        try{
+            $conexion = Conectar::conexion();
 
-        $sql = "INSERT INTO auditoria (id_usuario, accion, nombre_archivo, nombre_archivo_anterior, id_archivo, fecha) VALUES (?, ?, ?, ?, ?, NOW())";
-        $query = $conexion->prepare($sql);
-        $query->bind_param("isssi", $idUsuario, $accion, $nombreArchivoActual, $nombreArchivoAnterior, $idArchivo);
-        $query->execute();
-        $query->close();
+            $sql = "CALL sp_registrar_auditoria(?,?,?,?,?,?)";
+            $query = $conexion->prepare($sql);
+            $query->bind_param("isisss", $idusu, $accion, $idarch, $detalle, $nombreant, $nombrearch);
+            $query->execute();
+            $query->close();
+            return true;
+        }catch(Exception $ex){
+            echo "Error al insertar auditoría" . $ex->getMessage();
+            return false;
+        }
     }
 
     public function eliminarRegistroArchivoPapelera($idArchivo) {

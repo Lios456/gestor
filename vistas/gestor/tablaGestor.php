@@ -126,7 +126,7 @@ $result = mysqli_query($conexion, $sql);
 
 
     function registrarAuditoria(accion, nombreArchivo, nombreArchivoAnterior, idUsuario, idArchivo) {
-        var url = '..\\Controllers\\auditoria\\registrarAuditoria.php';
+        var url = '../Controllers/auditoria/registrarAuditoria.php';
         $.ajax({
             type: "POST",
             url: url,
