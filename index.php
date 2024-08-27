@@ -62,7 +62,7 @@
 
             <!-- Remind Password -->
             <div id="formFooter">
-                <a class="forgot-password-link" href="solicitud_cambio.php" id="alertLinkk">¿Olvidaste tu contraseña?</a>
+                <a class="forgot-password-link" href="solicitud_cambio.php" id="alertLink">¿Olvidaste tu contraseña?</a>
                 <!--<button class="btn btn-success" onclick="redirectToRegistro()">Registrar</button>-->
             </div>
         </div>
